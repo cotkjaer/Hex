@@ -158,12 +158,12 @@ extension HexMap
 
 extension HexMap
 {
-    func neighborsToHex(hex: Hex) -> [Hex]
+    public func neighborsToHex(hex: Hex) -> [Hex]
     {
         return hex.neighbors().filter { self[$0] != nil }
     }
     
-    func neighborValuesToHex(hex: Hex) -> [(Hex, Element)]
+    public func neighborValuesToHex(hex: Hex) -> [(Hex, Element)]
     {
         return hex.neighbors().filter { self[$0] != nil }.map { ($0, self[$0]!) }
     }

@@ -10,13 +10,13 @@ import UIKit
 import Hex
 import Random
 
-class ViewController: HexGridCollectionViewController
+class ViewController: HexesCollectionViewController
 {
-    var grid : HexMap<Bool> = HexMap(hexagonWithRadius: 5, repeatedValue: true)
+    var map : HexMap<Bool> = HexMap(hexagonWithRadius: 5, repeatedValue: true)
         {
         didSet
         {
-            hexes = Array(grid.hexes)
+            hexes = Array(map.hexes)
         }
     }
     
@@ -24,18 +24,16 @@ class ViewController: HexGridCollectionViewController
     
     override func viewDidLoad()
     {
-        grid = HexMap<Bool>(rectangleWithWidth: 20, height: 70, repeatedValue: true)
+        map = HexMap<Bool>(rectangleWithWidth: 5, height: 5, repeatedValue: true)
         
-        for (hex, _) in grid
+        for (hex, _) in map
         {
-            grid[hex] = Int.random(between: 0, and: 1000) > 400
+            map[hex] = Int.random(between: 0, and: 1000) > 400
         }
-        
-        //        grid = HexGrid<Int>(hexagonWithRadius: 12, repeatedValue: 0)
-        
-        hexGridLayout?.hexSpacing = 5
-        hexGridLayout?.hexEdgeLength = 35
-        hexGridLayout?.scrollDirection = .Both
+                
+        hexesLayout?.hexSpacing = 5
+        hexesLayout?.hexEdgeLength = 35
+        hexesLayout?.scrollDirection = .None
         
         super.viewDidLoad()
     }
@@ -45,7 +43,7 @@ class ViewController: HexGridCollectionViewController
         if let cell = cell as? Cell
         {
             
-            if grid[hex] == true
+            if map[hex] == true
             {
                 cell.backgroundColor = UIColor(white: 0.8, alpha: 1)
             }
@@ -127,9 +125,9 @@ class ViewController: HexGridCollectionViewController
                 return b == true ? 1 : nil
             }
             
-            moveCostMap = grid.moveCostForHex(s, movement: 10, costFunction: c)
+            moveCostMap = map.moveCostForHex(s, movement: 10, costFunction: c)
             
-            if let h = lastSelectedHex, let hexLayout = hexGridLayout
+            if let h = lastSelectedHex, let hexLayout = hexesLayout
             {
                 hexLine = h.lineTo(s)
                 
@@ -168,7 +166,7 @@ class ViewController: HexGridCollectionViewController
             return b == true ? 1 : nil
         }
         
-        let paths = grid.pathsFrom(from: origin, to: destination, costFunction: c)
+        let paths = map.pathsFrom(from: origin, to: destination, costFunction: c)
         
         for (node, dests) in paths?.nodes ?? [ : ]
         {
@@ -177,19 +175,11 @@ class ViewController: HexGridCollectionViewController
                 addLayerForLineFrom(node, h2: dest, color: UIColor.redColor())
             }
         }
-        
-//
-//        let paths = grid.shortestPathsFrom(from: origin, to: destination, costFunction: c)
-//        
-//        for path in paths
-//        {
-//            updatePath(path, origin: origin, layer: CAShapeLayer(), color: UIColor.redColor())
-//        }
     }
 
     func addLayerForLineFrom(h1: Hex, h2: Hex, color: UIColor)
     {
-        if let hexLayout = hexGridLayout
+        if let hexLayout = hexesLayout
         {
             let path = UIBezierPath()
             
@@ -213,7 +203,7 @@ class ViewController: HexGridCollectionViewController
     
 //    func updateLayerForNode(node: [Hex : [Hex]], origin: Hex, layer: CAShapeLayer, color: UIColor)
 //    {
-//        if let hexLayout = hexGridLayout
+//        if let hexLayout = hexesLayout
 //        {
 //            let path = UIBezierPath()
 //            
@@ -240,7 +230,7 @@ class ViewController: HexGridCollectionViewController
     
     func updatePath(hexpath: [Hex], origin: Hex, layer: CAShapeLayer, color: UIColor)
     {
-        if let hexLayout = hexGridLayout
+        if let hexLayout = hexesLayout
         {
             let path = UIBezierPath()
             

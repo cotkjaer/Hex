@@ -1,5 +1,5 @@
 //
-//  HexGridCollectionViewController.swift
+//  HexesCollectionViewController.swift
 //  Hex
 //
 //  Created by Christian Otkjær on 21/05/16.
@@ -8,18 +8,18 @@
 
 import UIKit
 
-public class HexGridCollectionViewController: UICollectionViewController
+public class HexesCollectionViewController: UICollectionViewController
 {
-    public var hexes : [Hex] = [] { didSet { collectionView?.setNeedsLayout() } }
+    public var hexes : [Hex] = [] { didSet { collectionView?.reloadData() } }
     
     public var orientation: HexOrientation = .Horizontal
     public var offsetType: OffsetType = .Odd
     
     // MARK: Layout
     
-    public var hexGridLayout : HexGridCollectionViewLayout?
+    public var hexesLayout : HexesCollectionViewLayout?
     {
-        return collectionViewLayout as? HexGridCollectionViewLayout
+        return collectionViewLayout as? HexesCollectionViewLayout
     }
     
     // MARK: Indexing

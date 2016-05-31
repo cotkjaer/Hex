@@ -86,54 +86,17 @@ extension HexLayout
         return bounds(corners(hex: hex))
     }
     
-    func boundsForGrid(grid: HexMap<Any>) -> CGRect
+    func boundsForHexes<S: CollectionType where S.Generator.Element == Hex>(hexes: S) -> CGRect
     {
-        guard let (anyHex, _) = grid.first else { return CGRectZero }
+        guard !hexes.isEmpty else { return CGRectZero }
         
-        var b = boundsForHex(anyHex)
+        var b = boundsForHex(hexes.first!)
         
-        for (hex, _) in grid
+        for hex in hexes
         {
             b = b.union(boundsForHex(hex))
         }
         
         return b
-    }
-}
-
-// MARK: - Paths
-
-extension HexLayout
-{
-    func pathForHex(hex: Hex) -> UIBezierPath
-    {
-        let points = corners(hex: hex)
-        
-        let path = UIBezierPath()
-        
-        guard let first = points.first else { return path }
-        
-        path.moveToPoint(first)
-        
-        for point in points[1..<points.count]
-        {
-            path.addLineToPoint(point)
-        }
-        
-        path.closePath()
-        
-        return path
-    }
-    
-    func pathForGrid(grid: HexMap<Any>) -> UIBezierPath
-    {
-        let path = UIBezierPath()
-        
-        for (hex, _) in grid
-        {
-            path.appendPath(pathForHex(hex))
-        }
-        
-        return path
     }
 }

@@ -12,8 +12,8 @@
 		8FE664671CEF33F1003AD6BC /* Hex.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FE664661CEF33F1003AD6BC /* Hex.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8FE6646E1CEF33F1003AD6BC /* Hex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE664631CEF33F1003AD6BC /* Hex.framework */; };
 		8FE664731CEF33F1003AD6BC /* HexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE664721CEF33F1003AD6BC /* HexTests.swift */; };
-		8FE6648A1CF10512003AD6BC /* HexGridCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE664891CF10512003AD6BC /* HexGridCollectionViewController.swift */; };
-		8FE6648C1CF1052E003AD6BC /* HexGridCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE6648B1CF1052E003AD6BC /* HexGridCollectionViewLayout.swift */; };
+		8FE6648A1CF10512003AD6BC /* HexesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE664891CF10512003AD6BC /* HexesCollectionViewController.swift */; };
+		8FE6648C1CF1052E003AD6BC /* HexesCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE6648B1CF1052E003AD6BC /* HexesCollectionViewLayout.swift */; };
 		8FE6648E1CF2D9F6003AD6BC /* HexLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE6648D1CF2D9F6003AD6BC /* HexLayout.swift */; };
 		8FE664901CF2DA64003AD6BC /* HexOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE6648F1CF2DA64003AD6BC /* HexOrientation.swift */; };
 		8FE664921CF2DD7C003AD6BC /* Graphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE664911CF2DD7C003AD6BC /* Graphics.swift */; };
@@ -99,14 +99,14 @@
 		8FE6646D1CEF33F1003AD6BC /* HexTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HexTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FE664721CEF33F1003AD6BC /* HexTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexTests.swift; sourceTree = "<group>"; };
 		8FE664741CEF33F1003AD6BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8FE664891CF10512003AD6BC /* HexGridCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexGridCollectionViewController.swift; sourceTree = "<group>"; };
-		8FE6648B1CF1052E003AD6BC /* HexGridCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexGridCollectionViewLayout.swift; sourceTree = "<group>"; };
+		8FE664891CF10512003AD6BC /* HexesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HexesCollectionViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		8FE6648B1CF1052E003AD6BC /* HexesCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HexesCollectionViewLayout.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8FE6648D1CF2D9F6003AD6BC /* HexLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexLayout.swift; sourceTree = "<group>"; };
 		8FE6648F1CF2DA64003AD6BC /* HexOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexOrientation.swift; sourceTree = "<group>"; };
 		8FE664911CF2DD7C003AD6BC /* Graphics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graphics.swift; sourceTree = "<group>"; };
 		8FE664971CF2F3A8003AD6BC /* HexDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HexDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FE664991CF2F3A9003AD6BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8FE6649B1CF2F3A9003AD6BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8FE6649B1CF2F3A9003AD6BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8FE6649E1CF2F3A9003AD6BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8FE664A01CF2F3A9003AD6BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8FE664A31CF2F3A9003AD6BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -201,8 +201,8 @@
 				8FE664CC1CF49C9C003AD6BC /* HexMap.swift */,
 				8FE6648F1CF2DA64003AD6BC /* HexOrientation.swift */,
 				8FE6648D1CF2D9F6003AD6BC /* HexLayout.swift */,
-				8FE664891CF10512003AD6BC /* HexGridCollectionViewController.swift */,
-				8FE6648B1CF1052E003AD6BC /* HexGridCollectionViewLayout.swift */,
+				8FE664891CF10512003AD6BC /* HexesCollectionViewController.swift */,
+				8FE6648B1CF1052E003AD6BC /* HexesCollectionViewLayout.swift */,
 				8FE664B71CF2F98E003AD6BC /* HexCollectionViewCell.swift */,
 				8FE664BE1CF31323003AD6BC /* HexView.swift */,
 			);
@@ -420,12 +420,12 @@
 				8FE664BF1CF31323003AD6BC /* HexView.swift in Sources */,
 				8FE664901CF2DA64003AD6BC /* HexOrientation.swift in Sources */,
 				8FE664D11CF58F54003AD6BC /* HexCoordinates.swift in Sources */,
-				8FE6648C1CF1052E003AD6BC /* HexGridCollectionViewLayout.swift in Sources */,
+				8FE6648C1CF1052E003AD6BC /* HexesCollectionViewLayout.swift in Sources */,
 				8FE664B81CF2F98E003AD6BC /* HexCollectionViewCell.swift in Sources */,
 				8FE6648E1CF2D9F6003AD6BC /* HexLayout.swift in Sources */,
 				8FE664D31CF59F57003AD6BC /* Hex.swift in Sources */,
 				8FE664921CF2DD7C003AD6BC /* Graphics.swift in Sources */,
-				8FE6648A1CF10512003AD6BC /* HexGridCollectionViewController.swift in Sources */,
+				8FE6648A1CF10512003AD6BC /* HexesCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

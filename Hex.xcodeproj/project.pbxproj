@@ -9,6 +9,24 @@
 /* Begin PBXBuildFile section */
 		8F253ED31CF72601001FE51E /* Collections.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE664E41CF6F245003AD6BC /* Collections.framework */; };
 		8F253ED41CF72609001FE51E /* Collections.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8FE664E41CF6F245003AD6BC /* Collections.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8F33CED21D40E97B0085BD56 /* HexagonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F33CED11D40E97B0085BD56 /* HexagonViewController.swift */; };
+		8F33CED41D40E9C00085BD56 /* HexMapShapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F33CED31D40E9C00085BD56 /* HexMapShapeViewController.swift */; };
+		8F33CEE41D420B760085BD56 /* UserInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F33CEE11D420B760085BD56 /* UserInterface.framework */; };
+		8F33CEE51D420B760085BD56 /* Graphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F33CEE21D420B760085BD56 /* Graphics.framework */; };
+		8F33CEE61D420B760085BD56 /* Arithmetic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F33CEE31D420B760085BD56 /* Arithmetic.framework */; };
+		8F33CEE71D420B820085BD56 /* UserInterface.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8F33CEE11D420B760085BD56 /* UserInterface.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8F33CEE81D420B830085BD56 /* Graphics.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8F33CEE21D420B760085BD56 /* Graphics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8F33CEE91D420B830085BD56 /* Arithmetic.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8F33CEE31D420B760085BD56 /* Arithmetic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8F33CEEB1D420D3B0085BD56 /* Hexagon.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F33CEEA1D420D3B0085BD56 /* Hexagon.storyboard */; };
+		8F33CEED1D420DBB0085BD56 /* Hexes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F33CEEC1D420DBB0085BD56 /* Hexes.storyboard */; };
+		8F33CEEF1D420E1F0085BD56 /* Rectangle.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F33CEEE1D420E1F0085BD56 /* Rectangle.storyboard */; };
+		8F33CEF11D42140F0085BD56 /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F33CEF01D42140F0085BD56 /* Slider.swift */; };
+		8F33CEF31D421A9E0085BD56 /* RectangleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F33CEF21D421A9E0085BD56 /* RectangleViewController.swift */; };
+		8F33CEF51D42276F0085BD56 /* Triangle.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F33CEF41D42276F0085BD56 /* Triangle.storyboard */; };
+		8F33CEF71D4227990085BD56 /* TriangleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F33CEF61D4227990085BD56 /* TriangleViewController.swift */; };
+		8F33CEF91D42290C0085BD56 /* Rhombus.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F33CEF81D42290C0085BD56 /* Rhombus.storyboard */; };
+		8F33CEFB1D42291C0085BD56 /* RhombusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F33CEFA1D42291C0085BD56 /* RhombusViewController.swift */; };
+		8F33CEFD1D42299F0085BD56 /* HexMapShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F33CEFC1D42299F0085BD56 /* HexMapShape.swift */; };
 		8FE664671CEF33F1003AD6BC /* Hex.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FE664661CEF33F1003AD6BC /* Hex.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8FE6646E1CEF33F1003AD6BC /* Hex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE664631CEF33F1003AD6BC /* Hex.framework */; };
 		8FE664731CEF33F1003AD6BC /* HexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE664721CEF33F1003AD6BC /* HexTests.swift */; };
@@ -18,7 +36,7 @@
 		8FE664901CF2DA64003AD6BC /* HexOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE6648F1CF2DA64003AD6BC /* HexOrientation.swift */; };
 		8FE664921CF2DD7C003AD6BC /* Graphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE664911CF2DD7C003AD6BC /* Graphics.swift */; };
 		8FE6649A1CF2F3A9003AD6BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE664991CF2F3A9003AD6BC /* AppDelegate.swift */; };
-		8FE6649C1CF2F3A9003AD6BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE6649B1CF2F3A9003AD6BC /* ViewController.swift */; };
+		8FE6649C1CF2F3A9003AD6BC /* HexMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE6649B1CF2F3A9003AD6BC /* HexMapViewController.swift */; };
 		8FE6649F1CF2F3A9003AD6BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FE6649D1CF2F3A9003AD6BC /* Main.storyboard */; };
 		8FE664A11CF2F3A9003AD6BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FE664A01CF2F3A9003AD6BC /* Assets.xcassets */; };
 		8FE664A41CF2F3A9003AD6BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FE664A21CF2F3A9003AD6BC /* LaunchScreen.storyboard */; };
@@ -73,6 +91,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				8F33CEE71D420B820085BD56 /* UserInterface.framework in CopyFiles */,
+				8F33CEE81D420B830085BD56 /* Graphics.framework in CopyFiles */,
+				8F33CEE91D420B830085BD56 /* Arithmetic.framework in CopyFiles */,
 				8FE664C61CF32EB1003AD6BC /* Random.framework in CopyFiles */,
 				8FE664BD1CF30234003AD6BC /* Hex.framework in CopyFiles */,
 				8F253ED41CF72609001FE51E /* Collections.framework in CopyFiles */,
@@ -93,6 +114,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8F33CED11D40E97B0085BD56 /* HexagonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexagonViewController.swift; sourceTree = "<group>"; };
+		8F33CED31D40E9C00085BD56 /* HexMapShapeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexMapShapeViewController.swift; sourceTree = "<group>"; };
+		8F33CEE11D420B760085BD56 /* UserInterface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserInterface.framework; path = Carthage/Build/iOS/UserInterface.framework; sourceTree = "<group>"; };
+		8F33CEE21D420B760085BD56 /* Graphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Graphics.framework; path = Carthage/Build/iOS/Graphics.framework; sourceTree = "<group>"; };
+		8F33CEE31D420B760085BD56 /* Arithmetic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Arithmetic.framework; path = Carthage/Build/iOS/Arithmetic.framework; sourceTree = "<group>"; };
+		8F33CEEA1D420D3B0085BD56 /* Hexagon.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Hexagon.storyboard; sourceTree = "<group>"; };
+		8F33CEEC1D420DBB0085BD56 /* Hexes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Hexes.storyboard; sourceTree = "<group>"; };
+		8F33CEEE1D420E1F0085BD56 /* Rectangle.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Rectangle.storyboard; sourceTree = "<group>"; };
+		8F33CEF01D42140F0085BD56 /* Slider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
+		8F33CEF21D421A9E0085BD56 /* RectangleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleViewController.swift; sourceTree = "<group>"; };
+		8F33CEF41D42276F0085BD56 /* Triangle.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Triangle.storyboard; sourceTree = "<group>"; };
+		8F33CEF61D4227990085BD56 /* TriangleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriangleViewController.swift; sourceTree = "<group>"; };
+		8F33CEF81D42290C0085BD56 /* Rhombus.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Rhombus.storyboard; sourceTree = "<group>"; };
+		8F33CEFA1D42291C0085BD56 /* RhombusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RhombusViewController.swift; sourceTree = "<group>"; };
+		8F33CEFC1D42299F0085BD56 /* HexMapShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexMapShape.swift; sourceTree = "<group>"; };
 		8FE664631CEF33F1003AD6BC /* Hex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Hex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FE664661CEF33F1003AD6BC /* Hex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hex.h; sourceTree = "<group>"; };
 		8FE664681CEF33F1003AD6BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -106,7 +142,7 @@
 		8FE664911CF2DD7C003AD6BC /* Graphics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graphics.swift; sourceTree = "<group>"; };
 		8FE664971CF2F3A8003AD6BC /* HexDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HexDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FE664991CF2F3A9003AD6BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8FE6649B1CF2F3A9003AD6BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		8FE6649B1CF2F3A9003AD6BC /* HexMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HexMapViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8FE6649E1CF2F3A9003AD6BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8FE664A01CF2F3A9003AD6BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8FE664A31CF2F3A9003AD6BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -149,6 +185,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F33CEE41D420B760085BD56 /* UserInterface.framework in Frameworks */,
+				8F33CEE51D420B760085BD56 /* Graphics.framework in Frameworks */,
+				8F33CEE61D420B760085BD56 /* Arithmetic.framework in Frameworks */,
 				8FE664C51CF32E9B003AD6BC /* Random.framework in Frameworks */,
 				8FE664B91CF30178003AD6BC /* Hex.framework in Frameworks */,
 				8F253ED31CF72601001FE51E /* Collections.framework in Frameworks */,
@@ -168,6 +207,9 @@
 		8FE664591CEF33F1003AD6BC = {
 			isa = PBXGroup;
 			children = (
+				8F33CEE11D420B760085BD56 /* UserInterface.framework */,
+				8F33CEE21D420B760085BD56 /* Graphics.framework */,
+				8F33CEE31D420B760085BD56 /* Arithmetic.framework */,
 				8FE664E41CF6F245003AD6BC /* Collections.framework */,
 				8FE664C41CF32E9B003AD6BC /* Random.framework */,
 				8FE664C21CF32A64003AD6BC /* Cartfile */,
@@ -199,6 +241,7 @@
 				8FE664D21CF59F57003AD6BC /* Hex.swift */,
 				8FE664D01CF58F54003AD6BC /* HexCoordinates.swift */,
 				8FE664CC1CF49C9C003AD6BC /* HexMap.swift */,
+				8F33CEFC1D42299F0085BD56 /* HexMapShape.swift */,
 				8FE6648F1CF2DA64003AD6BC /* HexOrientation.swift */,
 				8FE6648D1CF2D9F6003AD6BC /* HexLayout.swift */,
 				8FE664891CF10512003AD6BC /* HexesCollectionViewController.swift */,
@@ -223,9 +266,20 @@
 			isa = PBXGroup;
 			children = (
 				8FE664991CF2F3A9003AD6BC /* AppDelegate.swift */,
-				8FE6649B1CF2F3A9003AD6BC /* ViewController.swift */,
+				8FE6649B1CF2F3A9003AD6BC /* HexMapViewController.swift */,
 				8FE664C01CF31DDF003AD6BC /* Cell.swift */,
 				8FE6649D1CF2F3A9003AD6BC /* Main.storyboard */,
+				8F33CEEA1D420D3B0085BD56 /* Hexagon.storyboard */,
+				8F33CED11D40E97B0085BD56 /* HexagonViewController.swift */,
+				8F33CEF41D42276F0085BD56 /* Triangle.storyboard */,
+				8F33CEF61D4227990085BD56 /* TriangleViewController.swift */,
+				8F33CEF81D42290C0085BD56 /* Rhombus.storyboard */,
+				8F33CEFA1D42291C0085BD56 /* RhombusViewController.swift */,
+				8F33CEF01D42140F0085BD56 /* Slider.swift */,
+				8F33CEEE1D420E1F0085BD56 /* Rectangle.storyboard */,
+				8F33CEF21D421A9E0085BD56 /* RectangleViewController.swift */,
+				8F33CEEC1D420DBB0085BD56 /* Hexes.storyboard */,
+				8F33CED31D40E9C00085BD56 /* HexMapShapeViewController.swift */,
 				8FE664A01CF2F3A9003AD6BC /* Assets.xcassets */,
 				8FE664A21CF2F3A9003AD6BC /* LaunchScreen.storyboard */,
 				8FE664A51CF2F3A9003AD6BC /* Info.plist */,
@@ -395,9 +449,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F33CEF91D42290C0085BD56 /* Rhombus.storyboard in Resources */,
+				8F33CEF51D42276F0085BD56 /* Triangle.storyboard in Resources */,
+				8F33CEED1D420DBB0085BD56 /* Hexes.storyboard in Resources */,
+				8F33CEEB1D420D3B0085BD56 /* Hexagon.storyboard in Resources */,
 				8FE664A41CF2F3A9003AD6BC /* LaunchScreen.storyboard in Resources */,
 				8FE664A11CF2F3A9003AD6BC /* Assets.xcassets in Resources */,
 				8FE664C31CF32A64003AD6BC /* Cartfile in Resources */,
+				8F33CEEF1D420E1F0085BD56 /* Rectangle.storyboard in Resources */,
 				8FE6649F1CF2F3A9003AD6BC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,6 +481,7 @@
 				8FE664D11CF58F54003AD6BC /* HexCoordinates.swift in Sources */,
 				8FE6648C1CF1052E003AD6BC /* HexesCollectionViewLayout.swift in Sources */,
 				8FE664B81CF2F98E003AD6BC /* HexCollectionViewCell.swift in Sources */,
+				8F33CEFD1D42299F0085BD56 /* HexMapShape.swift in Sources */,
 				8FE6648E1CF2D9F6003AD6BC /* HexLayout.swift in Sources */,
 				8FE664D31CF59F57003AD6BC /* Hex.swift in Sources */,
 				8FE664921CF2DD7C003AD6BC /* Graphics.swift in Sources */,
@@ -442,8 +502,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8FE6649C1CF2F3A9003AD6BC /* ViewController.swift in Sources */,
+				8F33CED41D40E9C00085BD56 /* HexMapShapeViewController.swift in Sources */,
+				8F33CED21D40E97B0085BD56 /* HexagonViewController.swift in Sources */,
+				8FE6649C1CF2F3A9003AD6BC /* HexMapViewController.swift in Sources */,
+				8F33CEFB1D42291C0085BD56 /* RhombusViewController.swift in Sources */,
 				8FE6649A1CF2F3A9003AD6BC /* AppDelegate.swift in Sources */,
+				8F33CEF71D4227990085BD56 /* TriangleViewController.swift in Sources */,
+				8F33CEF11D42140F0085BD56 /* Slider.swift in Sources */,
+				8F33CEF31D421A9E0085BD56 /* RectangleViewController.swift in Sources */,
 				8FE664C11CF31DDF003AD6BC /* Cell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

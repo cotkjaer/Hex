@@ -10,13 +10,27 @@ import UIKit
 import Hex
 import Random
 
-class ViewController: HexesCollectionViewController
+class HexMapViewController: HexesCollectionViewController
 {
-    var map : HexMap<Bool> = HexMap(hexagonWithRadius: 5, repeatedValue: true)
+    var map : HexMap<Bool> = HexMap()
         {
         didSet
         {
+            for (hex, _) in map
+            {
+                map[hex] = Int.random(between: 0, and: 1000) > 400
+            }
+
             hexes = Array(map.hexes)
+            
+            removePathLayers()
+            
+            for ip in collectionView?.indexPathsForSelectedItems() ?? []
+            {
+            collectionView?.deselectItemAtIndexPath(ip, animated: false)
+            }
+            
+            updateLine()
         }
     }
     
@@ -24,13 +38,8 @@ class ViewController: HexesCollectionViewController
     
     override func viewDidLoad()
     {
-        map = HexMap<Bool>(rectangleWithWidth: 5, height: 5, repeatedValue: true)
+//        map = HexMap<Bool>(rectangleWithWidth: 5, height: 5, repeatedValue: true)
         
-        for (hex, _) in map
-        {
-            map[hex] = Int.random(between: 0, and: 1000) > 400
-        }
-                
         hexesLayout?.hexSpacing = 5
         hexesLayout?.hexEdgeLength = 35
         hexesLayout?.scrollDirection = .None
@@ -155,11 +164,16 @@ class ViewController: HexesCollectionViewController
         }
     }
     
-    func updatePaths(origin: Hex, destination: Hex)
+    func removePathLayers()
     {
         // remove pathLayers
         
         collectionView?.layer.sublayers?.filter({$0.name == "hexpath"}).forEach({$0.removeFromSuperlayer()})
+    }
+    
+    func updatePaths(origin: Hex, destination: Hex)
+    {
+        removePathLayers()
         
         func c(b: Bool?) -> Int?
         {
@@ -200,33 +214,6 @@ class ViewController: HexesCollectionViewController
             collectionView?.layer.addSublayer(layer)
         }
     }
-    
-//    func updateLayerForNode(node: [Hex : [Hex]], origin: Hex, layer: CAShapeLayer, color: UIColor)
-//    {
-//        if let hexLayout = hexesLayout
-//        {
-//            let path = UIBezierPath()
-//            
-//            path.moveToPoint(hexLayout.centerForHex(origin))
-//            
-//            collectionView?.layer.addSublayer(lineLayer)
-//            
-//            for hex in hexpath
-//            {
-//                path.addLineToPoint(hexLayout.centerForHex(hex))
-//            }
-//            
-//            layer.fillColor = nil
-//            layer.name = "hexpath"
-//            layer.path = path.CGPath
-//            layer.strokeColor = color.colorWithAlphaComponent(0.5).CGColor
-//            layer.lineWidth = hexLayout.hexEdgeLength / 3
-//            layer.lineCap = kCALineCapRound
-//            layer.lineJoin = kCALineJoinRound
-//            
-//            collectionView?.layer.addSublayer(layer)
-//        }
-//    }
     
     func updatePath(hexpath: [Hex], origin: Hex, layer: CAShapeLayer, color: UIColor)
     {

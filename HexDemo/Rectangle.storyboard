@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ggT-PF-DZW">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Rectangle-->
+        <scene sceneID="uy9-cJ-CHR">
+            <objects>
+                <viewController id="ggT-PF-DZW" customClass="RectangleViewController" customModule="HexDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FbD-gq-ZiU"/>
+                        <viewControllerLayoutGuide type="bottom" id="9wy-U8-EnZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wHa-lE-1gw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mfn-XX-Ocq">
+                                <rect key="frame" x="20" y="104" width="560" height="488"/>
+                                <connections>
+                                    <segue destination="3tX-b6-ECv" kind="embed" id="LxT-2f-QrT"/>
+                                </connections>
+                            </containerView>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="4" minValue="1" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="zMx-pt-Vn6" customClass="Slider" customModule="HexDemo" customModuleProvider="target">
+                                <rect key="frame" x="82" y="28" width="500" height="31"/>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Width:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBS-pT-I3I">
+                                <rect key="frame" x="20" y="33" width="56" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Height:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCt-6N-WJm">
+                                <rect key="frame" x="20" y="71" width="56" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="4" minValue="1" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="Qd1-AP-3sA" customClass="Slider" customModule="HexDemo" customModuleProvider="target">
+                                <rect key="frame" x="82" y="66" width="500" height="31"/>
+                            </slider>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Qd1-AP-3sA" firstAttribute="centerY" secondItem="yCt-6N-WJm" secondAttribute="centerY" id="6hs-OT-cBA"/>
+                            <constraint firstItem="zMx-pt-Vn6" firstAttribute="centerY" secondItem="UBS-pT-I3I" secondAttribute="centerY" id="9nI-1y-6c9"/>
+                            <constraint firstItem="yCt-6N-WJm" firstAttribute="trailing" secondItem="UBS-pT-I3I" secondAttribute="trailing" id="DQj-iA-St3"/>
+                            <constraint firstItem="Qd1-AP-3sA" firstAttribute="top" secondItem="zMx-pt-Vn6" secondAttribute="bottom" constant="8" symbolic="YES" id="FSh-br-dxK"/>
+                            <constraint firstItem="yCt-6N-WJm" firstAttribute="top" relation="greaterThanOrEqual" secondItem="UBS-pT-I3I" secondAttribute="bottom" constant="8" symbolic="YES" id="Inc-yI-CLD"/>
+                            <constraint firstItem="UBS-pT-I3I" firstAttribute="leading" secondItem="wHa-lE-1gw" secondAttribute="leadingMargin" id="KG1-uM-Nl5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zMx-pt-Vn6" secondAttribute="trailing" id="Lnf-Ms-L0f"/>
+                            <constraint firstItem="Qd1-AP-3sA" firstAttribute="trailing" secondItem="wHa-lE-1gw" secondAttribute="trailingMargin" id="Qxr-cB-wCO"/>
+                            <constraint firstItem="zMx-pt-Vn6" firstAttribute="leading" secondItem="UBS-pT-I3I" secondAttribute="trailing" constant="8" symbolic="YES" id="RM6-qh-T0u"/>
+                            <constraint firstItem="yCt-6N-WJm" firstAttribute="leading" secondItem="wHa-lE-1gw" secondAttribute="leadingMargin" id="SfK-hq-36N"/>
+                            <constraint firstItem="9wy-U8-EnZ" firstAttribute="top" secondItem="Mfn-XX-Ocq" secondAttribute="bottom" constant="8" symbolic="YES" id="aEm-IX-oy2"/>
+                            <constraint firstItem="zMx-pt-Vn6" firstAttribute="top" secondItem="FbD-gq-ZiU" secondAttribute="bottom" constant="8" symbolic="YES" id="iMm-pe-qLm"/>
+                            <constraint firstItem="Mfn-XX-Ocq" firstAttribute="leading" secondItem="wHa-lE-1gw" secondAttribute="leadingMargin" id="sJ9-A9-pXb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Mfn-XX-Ocq" secondAttribute="trailing" id="uOZ-0o-7ib"/>
+                            <constraint firstItem="Qd1-AP-3sA" firstAttribute="leading" secondItem="yCt-6N-WJm" secondAttribute="trailing" constant="8" symbolic="YES" id="uvu-p7-oQH"/>
+                            <constraint firstItem="Mfn-XX-Ocq" firstAttribute="top" secondItem="Qd1-AP-3sA" secondAttribute="bottom" constant="8" symbolic="YES" id="zvC-yW-o9W"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Rectangle" id="Qsl-wM-7F2"/>
+                    <connections>
+                        <outlet property="heightSlider" destination="Qd1-AP-3sA" id="8uB-I1-bVV"/>
+                        <outlet property="widthSlider" destination="zMx-pt-Vn6" id="WeJ-7l-siF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NPP-qk-V78" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="967" y="155"/>
+        </scene>
+        <!--Hexes-->
+        <scene sceneID="1CW-8V-rm1">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Hexes" id="3tX-b6-ECv" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lco-bR-Wc8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1343.5" y="203"/>
+        </scene>
+    </scenes>
+</document>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="KiP-Wx-avj">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Hexagon-->
+        <scene sceneID="Aqn-g3-kKL">
+            <objects>
+                <viewController id="KiP-Wx-avj" customClass="HexagonViewController" customModule="HexDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="55y-6l-65o"/>
+                        <viewControllerLayoutGuide type="bottom" id="6bI-GQ-iT7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="e5V-h6-6zD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vYd-6g-CzP">
+                                <rect key="frame" x="20" y="66" width="560" height="526"/>
+                                <connections>
+                                    <segue destination="g8V-WS-f0L" kind="embed" id="dJq-C2-zz4"/>
+                                </connections>
+                            </containerView>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="4" minValue="1" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="I48-Gd-RTu" customClass="Slider" customModule="HexDemo" customModuleProvider="target">
+                                <rect key="frame" x="83" y="28" width="499" height="31"/>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Radius:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gRH-9S-9Ml">
+                                <rect key="frame" x="20" y="33" width="57" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gRH-9S-9Ml" firstAttribute="leading" secondItem="e5V-h6-6zD" secondAttribute="leadingMargin" id="9Xl-bW-RXe"/>
+                            <constraint firstItem="I48-Gd-RTu" firstAttribute="centerY" secondItem="gRH-9S-9Ml" secondAttribute="centerY" id="AA2-bc-iys"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vYd-6g-CzP" secondAttribute="trailing" id="U6a-Xz-bqh"/>
+                            <constraint firstItem="6bI-GQ-iT7" firstAttribute="top" secondItem="vYd-6g-CzP" secondAttribute="bottom" constant="8" symbolic="YES" id="dMg-Tn-Y82"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="I48-Gd-RTu" secondAttribute="trailing" id="iQm-yY-zDE"/>
+                            <constraint firstItem="I48-Gd-RTu" firstAttribute="top" secondItem="55y-6l-65o" secondAttribute="bottom" constant="8" symbolic="YES" id="nh3-5z-6BR"/>
+                            <constraint firstItem="vYd-6g-CzP" firstAttribute="top" secondItem="I48-Gd-RTu" secondAttribute="bottom" constant="8" symbolic="YES" id="tD7-4e-g3L"/>
+                            <constraint firstItem="6bI-GQ-iT7" firstAttribute="top" secondItem="vYd-6g-CzP" secondAttribute="bottom" constant="8" symbolic="YES" id="tu9-fr-f2x"/>
+                            <constraint firstItem="I48-Gd-RTu" firstAttribute="leading" secondItem="gRH-9S-9Ml" secondAttribute="trailing" constant="8" symbolic="YES" id="uM7-y3-3gm"/>
+                            <constraint firstItem="vYd-6g-CzP" firstAttribute="leading" secondItem="e5V-h6-6zD" secondAttribute="leadingMargin" id="ujM-PA-ahH"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="tu9-fr-f2x"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Hexagon" id="uTs-1c-4uW"/>
+                    <connections>
+                        <outlet property="radiusSlider" destination="I48-Gd-RTu" id="Paw-Ie-MsH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gFV-xD-aLO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="967" y="155"/>
+        </scene>
+        <!--Hexes-->
+        <scene sceneID="4xX-aU-Fks">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Hexes" id="g8V-WS-f0L" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DPM-D7-llB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1372.5" y="155"/>
+        </scene>
+    </scenes>
+</document>

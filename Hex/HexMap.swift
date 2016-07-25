@@ -9,6 +9,7 @@
 import Foundation
 import Collections
 
+
 public struct HexMap<Element>
 {
     private var dict = Dictionary<Hex, Element>()
@@ -22,68 +23,87 @@ public struct HexMap<Element>
     {
     }
     
-    public init<S : SequenceType where S.Generator.Element == Hex>(hexes : S, repeatedValue: Element)
+    public init(shape: HexMapShape, initialValueBlock: (hex: Hex) -> Element)
     {
-        for hex in hexes
+        for hex in shape.hexes
+        {
+            dict[hex] = initialValueBlock(hex: hex)
+        }
+    }
+
+    public init(shape: HexMapShape, repeatedValue: Element)
+    {
+        for hex in shape.hexes
         {
             dict[hex] = repeatedValue
         }
     }
+
     
-    public init(rhombusWithMinQ minQ: Int,
-                                maxQ: Int,
-                                minR: Int,
-                                maxR: Int,
-                                repeatedValue: Element)
-    {
-        for q in minQ...maxQ
-        {
-            for r in minR...maxR
-            {
-                dict[Hex(q,r)] = repeatedValue
-            }
-        }
-    }
+//    public init<S : SequenceType where S.Generator.Element == Hex>(hexes : S, repeatedBlock: (hex: Hex) -> Element)
+//    {
+//        for hex in hexes
+//        {
+//            dict[hex] = repeatedBlock(hex: hex)
+//        }
+//    }
+//    
+//    
+//    public init<S : SequenceType where S.Generator.Element == Hex>(hexes : S, repeatedValue: Element)
+//    {
+//        self.init(hexes: hexes, repeatedBlock: { _ in return repeatedValue })
+//    }
     
-    public init(triangleOfSize size: Int,
-                               repeatedValue: Element)
-    {
-        for q in 0...size
-        {
-            for r in 0...size - q
-            {
-                dict[Hex(q, r)] = repeatedValue
-            }
-        }
-    }
-    
-    public init(hexagonWithRadius radius: Int, repeatedValue: Element)
-    {
-        for q in -radius...radius
-        {
-            let r1 = max(-radius, -q - radius)
-            let r2 = min(radius, -q + radius)
-            
-            for r in r1...r2
-            {
-                dict[Hex(q,r)] = repeatedValue
-            }
-        }
-    }
-    
-    public init(rectangleWithWidth width: Int, height: Int, repeatedValue: Element)
-    {
-        for r in 0 ..< height
-        {
-            let r_offset = r>>1
-            
-            for q in -r_offset ..< width - r_offset
-            {
-                dict[Hex(q,r)] = repeatedValue
-            }
-        }
-    }
-    
+//    public init(rhombusWithMinQ minQ: Int,
+//                                maxQ: Int,
+//                                minR: Int,
+//                                maxR: Int,
+//                                repeatedValue: Element)
+//    {
+//        for q in minQ...maxQ
+//        {
+//            for r in minR...maxR
+//            {
+//                dict[Hex(q,r)] = repeatedValue
+//            }
+//        }
+//    }
+//    
+//    public init(triangleOfSize size: Int,
+//                               repeatedValue: Element)
+//    {
+//        for q in 0...size
+//        {
+//            for r in 0...size - q
+//            {
+//                dict[Hex(q, r)] = repeatedValue
+//            }
+//        }
+//    }
+//    
+//    public init(hexagonWithRadius radius: Int, repeatedBlock: (Hex) -> Element)
+//    {
+//        self.init(hexes: hexagonWithRadius(radius), repeatedBlock: repeatedBlock)
+//    }
+//    
+//    public init(hexagonWithRadius radius: Int, repeatedValue: Element)
+//    {
+//        self.init(hexes: hexagonWithRadius(radius), repeatedValue: repeatedValue)
+//    }
+//    
+//    public init(rectangleWithWidth width: Int, height: Int, repeatedValue: Element)
+//    {
+//        for r in 0 ..< height
+//        {
+//            let r_offset = r>>1
+//            
+//            for q in -r_offset ..< width - r_offset
+//            {
+//                dict[Hex(q,r)] = repeatedValue
+//            }
+//        }
+//    }
+//    
     public var isEmpty : Bool { return dict.isEmpty }
     
     public var hexes : [Hex] { return Array(dict.keys) }
@@ -384,3 +404,45 @@ extension HexMap
     }
 }
 
+
+// MARK: - Shapes
+
+private func hexagonWithRadius(radius: Int) -> [Hex]
+{
+    var hexes : [Hex] = []
+    
+    for q in -radius...radius
+    {
+        let r1 = max(-radius, -q - radius)
+        let r2 = min(radius, -q + radius)
+        
+        for r in r1...r2
+        {
+            hexes.append(Hex(q,r))
+            
+            //                dict[Hex(q,r)] = repeatedValue
+        }
+    }
+    
+    return hexes
+}
+
+private func rhombusWithMinQ(minQ: Int,
+                             maxQ: Int,
+                             minR: Int,
+                             maxR: Int) -> [Hex]
+{
+    return (minQ...maxQ).flatMap { q in (minR...maxR).map { r in Hex(q,r) } }
+
+//    var hexes : [Hex] = []
+//
+//    for q in minQ...maxQ
+//    {
+//        for r in minR...maxR
+//        {
+//            hexes.append(Hex(q,r))
+//        }
+//    }
+//    
+//    return hexes
+}

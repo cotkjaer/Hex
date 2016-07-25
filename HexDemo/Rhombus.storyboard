@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HAA-Bh-env">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Rhombus-->
+        <scene sceneID="gh9-lF-H80">
+            <objects>
+                <viewController id="HAA-Bh-env" customClass="RhombusViewController" customModule="HexDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uhh-9D-L6f"/>
+                        <viewControllerLayoutGuide type="bottom" id="r00-iV-NPK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cUU-Vo-q3M">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bt9-fe-k9a">
+                                <rect key="frame" x="20" y="104" width="560" height="488"/>
+                                <connections>
+                                    <segue destination="ZzV-XN-0AK" kind="embed" id="sVA-WV-yo5"/>
+                                </connections>
+                            </containerView>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="4" minValue="1" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="bZP-a8-Od1" customClass="Slider" customModule="HexDemo" customModuleProvider="target">
+                                <rect key="frame" x="98" y="28" width="484" height="31"/>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Columns:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t3m-FP-dt0">
+                                <rect key="frame" x="20" y="33" width="72" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rows:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AU7-Hp-qwt">
+                                <rect key="frame" x="20" y="71" width="72" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="4" minValue="1" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="jPb-F1-nV6" customClass="Slider" customModule="HexDemo" customModuleProvider="target">
+                                <rect key="frame" x="98" y="66" width="484" height="31"/>
+                            </slider>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Bt9-fe-k9a" firstAttribute="leading" secondItem="cUU-Vo-q3M" secondAttribute="leadingMargin" id="369-Lg-KZc"/>
+                            <constraint firstItem="t3m-FP-dt0" firstAttribute="leading" secondItem="cUU-Vo-q3M" secondAttribute="leadingMargin" id="5xu-7F-Bii"/>
+                            <constraint firstItem="AU7-Hp-qwt" firstAttribute="trailing" secondItem="t3m-FP-dt0" secondAttribute="trailing" id="CTl-wt-3xl"/>
+                            <constraint firstItem="Bt9-fe-k9a" firstAttribute="top" secondItem="jPb-F1-nV6" secondAttribute="bottom" constant="8" symbolic="YES" id="Ftk-mf-Cks"/>
+                            <constraint firstItem="jPb-F1-nV6" firstAttribute="leading" secondItem="AU7-Hp-qwt" secondAttribute="trailing" constant="8" symbolic="YES" id="JTB-Gc-SnP"/>
+                            <constraint firstItem="bZP-a8-Od1" firstAttribute="centerY" secondItem="t3m-FP-dt0" secondAttribute="centerY" id="SL6-PU-XIF"/>
+                            <constraint firstItem="AU7-Hp-qwt" firstAttribute="leading" secondItem="cUU-Vo-q3M" secondAttribute="leadingMargin" id="V9K-bK-omU"/>
+                            <constraint firstItem="bZP-a8-Od1" firstAttribute="leading" secondItem="t3m-FP-dt0" secondAttribute="trailing" constant="8" symbolic="YES" id="WuZ-CI-dZJ"/>
+                            <constraint firstItem="AU7-Hp-qwt" firstAttribute="top" relation="greaterThanOrEqual" secondItem="t3m-FP-dt0" secondAttribute="bottom" constant="8" symbolic="YES" id="cw8-fI-c55"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bZP-a8-Od1" secondAttribute="trailing" id="gmh-qZ-knL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Bt9-fe-k9a" secondAttribute="trailing" id="hmS-aD-w7B"/>
+                            <constraint firstItem="jPb-F1-nV6" firstAttribute="top" secondItem="bZP-a8-Od1" secondAttribute="bottom" constant="8" symbolic="YES" id="iMO-d1-cu2"/>
+                            <constraint firstItem="r00-iV-NPK" firstAttribute="top" secondItem="Bt9-fe-k9a" secondAttribute="bottom" constant="8" symbolic="YES" id="sp7-JI-kiT"/>
+                            <constraint firstItem="jPb-F1-nV6" firstAttribute="centerY" secondItem="AU7-Hp-qwt" secondAttribute="centerY" id="usZ-1W-OsL"/>
+                            <constraint firstItem="jPb-F1-nV6" firstAttribute="trailing" secondItem="cUU-Vo-q3M" secondAttribute="trailingMargin" id="vVQ-FR-kEp"/>
+                            <constraint firstItem="bZP-a8-Od1" firstAttribute="top" secondItem="uhh-9D-L6f" secondAttribute="bottom" constant="8" symbolic="YES" id="z4G-SB-fSv"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Rhombus" id="buF-Ml-n3b"/>
+                    <connections>
+                        <outlet property="columnsSlider" destination="bZP-a8-Od1" id="YMj-UU-HsU"/>
+                        <outlet property="rowsSlider" destination="jPb-F1-nV6" id="WXc-L8-rkx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ll6-J8-Z5h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="967" y="155"/>
+        </scene>
+        <!--Hexes-->
+        <scene sceneID="ofy-6h-I8q">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Hexes" id="ZzV-XN-0AK" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dkg-M4-IGV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1343.5" y="203"/>
+        </scene>
+    </scenes>
+</document>

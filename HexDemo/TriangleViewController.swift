@@ -10,7 +10,7 @@ import UIKit
 import Hex
 import UserInterface
 
-class TriangleViewController: HexMapShapeViewController
+class TriangleViewController: ShapeViewController
 {
     var size : Int = 4
         {

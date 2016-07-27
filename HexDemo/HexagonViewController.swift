@@ -10,7 +10,7 @@ import UIKit
 import Hex
 import UserInterface
 
-class HexagonViewController: HexMapShapeViewController
+class HexagonViewController: ShapeViewController
 {
     var radius : Int = 4
         {

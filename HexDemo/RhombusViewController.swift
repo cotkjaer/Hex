@@ -10,7 +10,7 @@ import UIKit
 import Hex
 import UserInterface
 
-class RhombusViewController: HexMapShapeViewController
+class RhombusViewController: ShapeViewController
 {
     var columns : Int = 4
         {

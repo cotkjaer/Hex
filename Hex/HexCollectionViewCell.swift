@@ -11,12 +11,15 @@ import UIKit
 @IBDesignable
 public class HexCollectionViewCell: UICollectionViewCell
 {
+    @IBOutlet public weak var textLabel: UILabel?
+    @IBOutlet public weak var detailLabel: UILabel?
+    
     @IBInspectable
     public var borderWidth : CGFloat = 2
         { didSet { updateHexShape(oldValue != borderWidth) } }
     
     @IBInspectable
-    public var borderColor : UIColor = UIColor.orangeColor()
+    public override var borderColor: UIColor?
         { didSet { updateHexBorder(oldValue != borderColor) } }
     
     private let hexLayer = CAShapeLayer()
@@ -67,7 +70,7 @@ public class HexCollectionViewCell: UICollectionViewCell
     {
         if doUpdate
         {
-            hexLayer.strokeColor = borderColor.CGColor
+            hexLayer.strokeColor = borderColor?.CGColor
             hexLayer.lineWidth = borderWidth
             
             setNeedsDisplay()

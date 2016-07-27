@@ -59,6 +59,13 @@ public class HexesCollectionViewController: UICollectionViewController
         return "Cell"
     }
     
+    public final func reloadCellForHex(hex: Hex)
+    {
+        guard let indexPath = indexPathForHex(hex), let cell = collectionView?.cellForItemAtIndexPath(indexPath) else { return }
+        
+        configureCell(cell, forHex: hex)
+    }
+    
     public func configureCell(cell: UICollectionViewCell, forHex hex: Hex)
     {
         //NOOP - override

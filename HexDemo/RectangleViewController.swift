@@ -10,7 +10,7 @@ import UIKit
 import Hex
 import UserInterface
 
-class RectangleViewController: HexMapShapeViewController
+class RectangleViewController: ShapeViewController
 {
     var width : Int = 4
         {

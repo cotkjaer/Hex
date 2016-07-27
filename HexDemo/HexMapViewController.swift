@@ -10,8 +10,16 @@ import UIKit
 import Hex
 import Random
 
+protocol HexMapViewControllerDelegate
+{
+    func hexMapController(controller: HexMapViewController, didSelectHex: Hex)
+    func hexMapController(controller: HexMapViewController, didDeselectHex: Hex)
+}
+
 class HexMapViewController: HexesCollectionViewController
 {
+    var delegate : HexMapViewControllerDelegate?
+    
     var map : HexMap<Bool> = HexMap()
         {
         didSet
@@ -38,8 +46,6 @@ class HexMapViewController: HexesCollectionViewController
     
     override func viewDidLoad()
     {
-//        map = HexMap<Bool>(rectangleWithWidth: 5, height: 5, repeatedValue: true)
-        
         hexesLayout?.hexSpacing = 5
         hexesLayout?.hexEdgeLength = 35
         hexesLayout?.scrollDirection = .None
@@ -49,7 +55,7 @@ class HexMapViewController: HexesCollectionViewController
     
     override func configureCell(cell: UICollectionViewCell, forHex hex: Hex)
     {
-        if let cell = cell as? Cell
+        if let cell = cell as? HexCollectionViewCell
         {
             
             if map[hex] == true
@@ -68,15 +74,15 @@ class HexMapViewController: HexesCollectionViewController
             
             let offset = hex.offsetCoordinates(orientation, offset: .Odd)
             
-            cell.coordinatesLabel.text = "\(offset.col + 1)x\(offset.row + 1)"
+            cell.detailLabel?.text = "\(offset.col + 1)x\(offset.row + 1)"
             
             if let cost = moveCostMap?[hex]
             {
-                cell.label.text = "\(cost)"
+                cell.textLabel?.text = "\(cost)"
             }
             else
             {
-                cell.label.text = nil
+                cell.textLabel?.text = nil
             }
 
             if hexLine.contains(hex)
@@ -98,23 +104,31 @@ class HexMapViewController: HexesCollectionViewController
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-        if let c = collectionView.cellForItemAtIndexPath(indexPath), let hex = hexForIndexPath(indexPath)
-        {
-            configureCell(c, forHex: hex)
-            
-            updateLine()
-        }
+        guard let hex = hexForIndexPath(indexPath) else { return }
+
+        delegate?.hexMapController(self, didSelectHex: hex)
+
+//        if let cell = collectionView.cellForItemAtIndexPath(indexPath)
+//        {
+//            configureCell(cell, forHex: hex)
+//            
+//            updateLine()
+//        }
     }
     
     override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath)
     {
-        if let c = collectionView.cellForItemAtIndexPath(indexPath), let hex = hexForIndexPath(indexPath)
-        {
-            configureCell(c, forHex: hex)
-            lastSelectedHex = hex
-            
-            updateLine()
-        }
+        guard let hex = hexForIndexPath(indexPath) else { return }
+
+        delegate?.hexMapController(self, didDeselectHex: hex)
+        
+//        if let c = collectionView.cellForItemAtIndexPath(indexPath)
+//        {
+//            configureCell(c, forHex: hex)
+//            lastSelectedHex = hex
+//            
+//            updateLine()
+//        }
     }
     
     var selectedIndexPath : NSIndexPath? { return collectionView?.indexPathsForSelectedItems()?.first }

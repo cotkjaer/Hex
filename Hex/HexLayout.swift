@@ -77,6 +77,7 @@ struct HexLayout
         }
     }
 }
+
 // MARK: - Bounds
 
 extension HexLayout
@@ -84,6 +85,13 @@ extension HexLayout
     func boundsForHex(hex: Hex) -> CGRect
     {
         return bounds(corners(hex: hex))
+    }
+
+    func boundsForHex(hex: Hex?) -> CGRect?
+    {
+        guard let hex = hex else { return nil }
+        
+        return boundsForHex(hex)
     }
     
     func boundsForHexes<S: CollectionType where S.Generator.Element == Hex>(hexes: S) -> CGRect
@@ -100,3 +108,15 @@ extension HexLayout
         return b
     }
 }
+
+
+// MARK: - Equatable
+
+extension HexLayout : Equatable {}
+
+func == (lhs: HexLayout, rhs: HexLayout) -> Bool
+{
+    return lhs.orientation == rhs.orientation && lhs.edgeLength == rhs.edgeLength && lhs.spacing == rhs.spacing && lhs.scale == rhs.scale && lhs.offset == rhs.offset
+}
+
+

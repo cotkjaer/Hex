@@ -27,6 +27,7 @@
 		8F33CEF91D42290C0085BD56 /* Rhombus.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F33CEF81D42290C0085BD56 /* Rhombus.storyboard */; };
 		8F33CEFB1D42291C0085BD56 /* RhombusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F33CEFA1D42291C0085BD56 /* RhombusViewController.swift */; };
 		8F33CEFD1D42299F0085BD56 /* HexMapShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F33CEFC1D42299F0085BD56 /* HexMapShape.swift */; };
+		8F84B2791D9D26B400B279B2 /* HexLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F84B2781D9D26B400B279B2 /* HexLayer.swift */; };
 		8F8E009D1D4743560047FF9F /* HexesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8E009C1D4743560047FF9F /* HexesView.swift */; };
 		8F8E009F1D474DF90047FF9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F8E009E1D474DF90047FF9F /* Main.storyboard */; };
 		8F8E00A11D474EC60047FF9F /* HexesView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F8E00A01D474EC60047FF9F /* HexesView.storyboard */; };
@@ -34,6 +35,9 @@
 		8F8E00A51D475AA00047FF9F /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8E00A41D475AA00047FF9F /* UIView.swift */; };
 		8F8E00A71D479E810047FF9F /* HitTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F8E00A61D479E810047FF9F /* HitTest.storyboard */; };
 		8F8E00A91D479E9A0047FF9F /* HitTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8E00A81D479E9A0047FF9F /* HitTestViewController.swift */; };
+		8FA685EB1E325A4300DFB0E8 /* Heap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FA685EA1E325A4300DFB0E8 /* Heap.framework */; };
+		8FA685EC1E325A7600DFB0E8 /* Heap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FA685EA1E325A4300DFB0E8 /* Heap.framework */; };
+		8FA685ED1E325A7600DFB0E8 /* Heap.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8FA685EA1E325A4300DFB0E8 /* Heap.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8FE664671CEF33F1003AD6BC /* Hex.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FE664661CEF33F1003AD6BC /* Hex.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8FE6646E1CEF33F1003AD6BC /* Hex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE664631CEF33F1003AD6BC /* Hex.framework */; };
 		8FE664731CEF33F1003AD6BC /* HexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE664721CEF33F1003AD6BC /* HexTests.swift */; };
@@ -47,7 +51,6 @@
 		8FE6649F1CF2F3A9003AD6BC /* Shapes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FE6649D1CF2F3A9003AD6BC /* Shapes.storyboard */; };
 		8FE664A11CF2F3A9003AD6BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FE664A01CF2F3A9003AD6BC /* Assets.xcassets */; };
 		8FE664A41CF2F3A9003AD6BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FE664A21CF2F3A9003AD6BC /* LaunchScreen.storyboard */; };
-		8FE664AF1CF2F3A9003AD6BC /* HexDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE664AE1CF2F3A9003AD6BC /* HexDemoTests.swift */; };
 		8FE664B81CF2F98E003AD6BC /* HexCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE664B71CF2F98E003AD6BC /* HexCollectionViewCell.swift */; };
 		8FE664B91CF30178003AD6BC /* Hex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE664631CEF33F1003AD6BC /* Hex.framework */; };
 		8FE664BD1CF30234003AD6BC /* Hex.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8FE664631CEF33F1003AD6BC /* Hex.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -74,13 +77,6 @@
 			remoteGlobalIDString = 8FE664621CEF33F1003AD6BC;
 			remoteInfo = Hex;
 		};
-		8FE664AB1CF2F3A9003AD6BC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8FE6645A1CEF33F1003AD6BC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8FE664961CF2F3A8003AD6BC;
-			remoteInfo = HexDemo;
-		};
 		8FE664BA1CF30192003AD6BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8FE6645A1CEF33F1003AD6BC /* Project object */;
@@ -102,6 +98,7 @@
 				8F33CEE91D420B830085BD56 /* Arithmetic.framework in CopyFiles */,
 				8FE664C61CF32EB1003AD6BC /* Random.framework in CopyFiles */,
 				8FE664BD1CF30234003AD6BC /* Hex.framework in CopyFiles */,
+				8FA685ED1E325A7600DFB0E8 /* Heap.framework in CopyFiles */,
 				8F253ED41CF72609001FE51E /* Collections.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,6 +132,7 @@
 		8F33CEF81D42290C0085BD56 /* Rhombus.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Rhombus.storyboard; sourceTree = "<group>"; };
 		8F33CEFA1D42291C0085BD56 /* RhombusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RhombusViewController.swift; sourceTree = "<group>"; };
 		8F33CEFC1D42299F0085BD56 /* HexMapShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexMapShape.swift; sourceTree = "<group>"; };
+		8F84B2781D9D26B400B279B2 /* HexLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexLayer.swift; sourceTree = "<group>"; };
 		8F8E009C1D4743560047FF9F /* HexesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexesView.swift; sourceTree = "<group>"; };
 		8F8E009E1D474DF90047FF9F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8F8E00A01D474EC60047FF9F /* HexesView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HexesView.storyboard; sourceTree = "<group>"; };
@@ -142,6 +140,7 @@
 		8F8E00A41D475AA00047FF9F /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		8F8E00A61D479E810047FF9F /* HitTest.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HitTest.storyboard; sourceTree = "<group>"; };
 		8F8E00A81D479E9A0047FF9F /* HitTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitTestViewController.swift; sourceTree = "<group>"; };
+		8FA685EA1E325A4300DFB0E8 /* Heap.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Heap.framework; path = Carthage/Build/iOS/Heap.framework; sourceTree = "<group>"; };
 		8FE664631CEF33F1003AD6BC /* Hex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Hex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FE664661CEF33F1003AD6BC /* Hex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hex.h; sourceTree = "<group>"; };
 		8FE664681CEF33F1003AD6BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -160,9 +159,6 @@
 		8FE664A01CF2F3A9003AD6BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8FE664A31CF2F3A9003AD6BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8FE664A51CF2F3A9003AD6BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8FE664AA1CF2F3A9003AD6BC /* HexDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HexDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8FE664AE1CF2F3A9003AD6BC /* HexDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexDemoTests.swift; sourceTree = "<group>"; };
-		8FE664B01CF2F3A9003AD6BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8FE664B71CF2F98E003AD6BC /* HexCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexCollectionViewCell.swift; sourceTree = "<group>"; };
 		8FE664BE1CF31323003AD6BC /* HexView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexView.swift; sourceTree = "<group>"; };
 		8FE664C21CF32A64003AD6BC /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
@@ -179,6 +175,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FA685EB1E325A4300DFB0E8 /* Heap.framework in Frameworks */,
 				8FE664E51CF6F245003AD6BC /* Collections.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,20 +199,22 @@
 				8F33CEE61D420B760085BD56 /* Arithmetic.framework in Frameworks */,
 				8FE664C51CF32E9B003AD6BC /* Random.framework in Frameworks */,
 				8FE664B91CF30178003AD6BC /* Hex.framework in Frameworks */,
+				8FA685EC1E325A7600DFB0E8 /* Heap.framework in Frameworks */,
 				8F253ED31CF72601001FE51E /* Collections.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8FE664A71CF2F3A9003AD6BC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8FA685E91E325A4200DFB0E8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8FA685EA1E325A4300DFB0E8 /* Heap.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8FE664591CEF33F1003AD6BC = {
 			isa = PBXGroup;
 			children = (
@@ -228,8 +227,8 @@
 				8FE664651CEF33F1003AD6BC /* Hex */,
 				8FE664711CEF33F1003AD6BC /* HexTests */,
 				8FE664981CF2F3A9003AD6BC /* HexDemo */,
-				8FE664AD1CF2F3A9003AD6BC /* HexDemoTests */,
 				8FE664641CEF33F1003AD6BC /* Products */,
+				8FA685E91E325A4200DFB0E8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -239,7 +238,6 @@
 				8FE664631CEF33F1003AD6BC /* Hex.framework */,
 				8FE6646D1CEF33F1003AD6BC /* HexTests.xctest */,
 				8FE664971CF2F3A8003AD6BC /* HexDemo.app */,
-				8FE664AA1CF2F3A9003AD6BC /* HexDemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -260,6 +258,7 @@
 				8FE6648B1CF1052E003AD6BC /* HexesCollectionViewLayout.swift */,
 				8FE664B71CF2F98E003AD6BC /* HexCollectionViewCell.swift */,
 				8FE664BE1CF31323003AD6BC /* HexView.swift */,
+				8F84B2781D9D26B400B279B2 /* HexLayer.swift */,
 				8F8E009C1D4743560047FF9F /* HexesView.swift */,
 				8F8E00A41D475AA00047FF9F /* UIView.swift */,
 			);
@@ -303,15 +302,6 @@
 				8FE664A51CF2F3A9003AD6BC /* Info.plist */,
 			);
 			path = HexDemo;
-			sourceTree = "<group>";
-		};
-		8FE664AD1CF2F3A9003AD6BC /* HexDemoTests */ = {
-			isa = PBXGroup;
-			children = (
-				8FE664AE1CF2F3A9003AD6BC /* HexDemoTests.swift */,
-				8FE664B01CF2F3A9003AD6BC /* Info.plist */,
-			);
-			path = HexDemoTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -384,24 +374,6 @@
 			productReference = 8FE664971CF2F3A8003AD6BC /* HexDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		8FE664A91CF2F3A9003AD6BC /* HexDemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8FE664B41CF2F3A9003AD6BC /* Build configuration list for PBXNativeTarget "HexDemoTests" */;
-			buildPhases = (
-				8FE664A61CF2F3A9003AD6BC /* Sources */,
-				8FE664A71CF2F3A9003AD6BC /* Frameworks */,
-				8FE664A81CF2F3A9003AD6BC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8FE664AC1CF2F3A9003AD6BC /* PBXTargetDependency */,
-			);
-			name = HexDemoTests;
-			productName = HexDemoTests;
-			productReference = 8FE664AA1CF2F3A9003AD6BC /* HexDemoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -409,21 +381,21 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Christian Otkjær";
 				TargetAttributes = {
 					8FE664621CEF33F1003AD6BC = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 					8FE6646C1CEF33F1003AD6BC = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 					8FE664961CF2F3A8003AD6BC = {
 						CreatedOnToolsVersion = 7.3.1;
-					};
-					8FE664A91CF2F3A9003AD6BC = {
-						CreatedOnToolsVersion = 7.3.1;
-						TestTargetID = 8FE664961CF2F3A8003AD6BC;
+						DevelopmentTeam = 9HQR3Y4WE5;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -443,7 +415,6 @@
 				8FE664621CEF33F1003AD6BC /* Hex */,
 				8FE6646C1CEF33F1003AD6BC /* HexTests */,
 				8FE664961CF2F3A8003AD6BC /* HexDemo */,
-				8FE664A91CF2F3A9003AD6BC /* HexDemoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -482,13 +453,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8FE664A81CF2F3A9003AD6BC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -497,6 +461,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F8E00A51D475AA00047FF9F /* UIView.swift in Sources */,
+				8F84B2791D9D26B400B279B2 /* HexLayer.swift in Sources */,
 				8FE664CD1CF49C9C003AD6BC /* HexMap.swift in Sources */,
 				8FE664BF1CF31323003AD6BC /* HexView.swift in Sources */,
 				8FE664901CF2DA64003AD6BC /* HexOrientation.swift in Sources */,
@@ -538,14 +503,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8FE664A61CF2F3A9003AD6BC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8FE664AF1CF2F3A9003AD6BC /* HexDemoTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -553,11 +510,6 @@
 			isa = PBXTargetDependency;
 			target = 8FE664621CEF33F1003AD6BC /* Hex */;
 			targetProxy = 8FE6646F1CEF33F1003AD6BC /* PBXContainerItemProxy */;
-		};
-		8FE664AC1CF2F3A9003AD6BC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8FE664961CF2F3A8003AD6BC /* HexDemo */;
-			targetProxy = 8FE664AB1CF2F3A9003AD6BC /* PBXContainerItemProxy */;
 		};
 		8FE664BB1CF30192003AD6BC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -600,8 +552,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -649,8 +603,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -670,6 +626,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -681,6 +638,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -691,11 +649,13 @@
 				);
 				INFOPLIST_FILE = Hex/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.silverback-it.Hex";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -703,6 +663,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -713,10 +674,12 @@
 				);
 				INFOPLIST_FILE = Hex/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.silverback-it.Hex";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -731,6 +694,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.silverback-it.HexTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -745,6 +709,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.silverback-it.HexTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -752,14 +717,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9HQR3Y4WE5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = HexDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.silverback-it.HexDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -767,38 +735,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9HQR3Y4WE5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = HexDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.silverback-it.HexDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		8FE664B51CF2F3A9003AD6BC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = HexDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.silverback-it.HexDemoTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HexDemo.app/HexDemo";
-			};
-			name = Debug;
-		};
-		8FE664B61CF2F3A9003AD6BC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = HexDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.silverback-it.HexDemoTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HexDemo.app/HexDemo";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -837,15 +784,6 @@
 			buildConfigurations = (
 				8FE664B21CF2F3A9003AD6BC /* Debug */,
 				8FE664B31CF2F3A9003AD6BC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8FE664B41CF2F3A9003AD6BC /* Build configuration list for PBXNativeTarget "HexDemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8FE664B51CF2F3A9003AD6BC /* Debug */,
-				8FE664B61CF2F3A9003AD6BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

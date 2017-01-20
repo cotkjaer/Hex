@@ -11,12 +11,12 @@ import Foundation
 
 public enum HexMapShape
 {
-    case Rectangle(width: Int, height: Int)
-    case Hexagon(radius: Int)
-    case Triangle(size: Int)
-    case Rhombus(columns: Int, rows: Int)
+    case rectangle(width: Int, height: Int)
+    case hexagon(radius: Int)
+    case triangle(size: Int)
+    case rhombus(columns: Int, rows: Int)
 //    case Rhombus(minQ: Int, maxQ: Int, minR: Int,        maxR: Int)
-    case Custom(hexes: [Hex])
+    case custom(hexes: [Hex])
     
     public var hexes : [Hex]
     {
@@ -24,7 +24,7 @@ public enum HexMapShape
         
         switch self
         {
-        case let .Rectangle(width, height):
+        case let .rectangle(width, height):
             
             for r in 0 ..< height
             {
@@ -36,11 +36,11 @@ public enum HexMapShape
                 }
             }
             
-        case let .Hexagon(radius):
+        case let .hexagon(radius):
             
             return (-radius...radius).flatMap { q in (max(-radius, -q - radius)...min(radius, -q + radius)).map { r in Hex(q,r) } }
            
-        case let .Rhombus(columns, rows):
+        case let .rhombus(columns, rows):
 //        case let .Rhombus(minQ, maxQ, minR, maxR):
             let minQ = 0
             let maxQ = columns
@@ -50,11 +50,11 @@ public enum HexMapShape
             
             return (minQ...maxQ).flatMap { q in (minR...maxR).map { r in Hex(q,r) } }
             
-        case let .Triangle(size):
+        case let .triangle(size):
             
             return (0...size).flatMap { q in (0...size - q).map { r in Hex(q,r) } }
             
-        case let .Custom(hexes):
+        case let .custom(hexes):
             
             return hexes
         }

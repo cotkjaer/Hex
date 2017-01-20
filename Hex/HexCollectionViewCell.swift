@@ -9,21 +9,26 @@
 import UIKit
 
 @IBDesignable
-public class HexCollectionViewCell: UICollectionViewCell
+open class HexCollectionViewCell: UICollectionViewCell
 {
-    @IBOutlet public weak var textLabel: UILabel?
-    @IBOutlet public weak var detailLabel: UILabel?
+    @IBOutlet open weak var textLabel: UILabel?
+    @IBOutlet open weak var detailLabel: UILabel?
+    
+    private let hexView = HexView(frame: CGRect.zero)
     
     @IBInspectable
-    public var borderWidth : CGFloat = 2
-        { didSet { updateHexShape(oldValue != borderWidth) } }
+    open var hexBorderWidth : CGFloat
+        {
+        get
+        {
+            return hexView.hexBorderWidth
+        }
+        set
+        {
+            hexView.hexBorderWidth = newValue
+        }
+    }
     
-    @IBInspectable
-    public override var borderColor: UIColor?
-        { didSet { updateHexBorder(oldValue != borderColor) } }
-    
-    private let hexLayer = CAShapeLayer()
-
     // MARK: - Init
     
     override init(frame: CGRect)
@@ -38,7 +43,7 @@ public class HexCollectionViewCell: UICollectionViewCell
         setup()
     }
     
-    public override func awakeFromNib()
+    open override func awakeFromNib()
     {
         super.awakeFromNib()
         setup()
@@ -46,91 +51,194 @@ public class HexCollectionViewCell: UICollectionViewCell
     
     func setup()
     {
-        updateHexShape()
-        updateHexBorder()
-        layer.insertSublayer(hexLayer, atIndex: 0)
+        backgroundView = hexView
+        
+        setNeedsLayout()
     }
     
-    public var orientation : HexOrientation = .Horizontal
+    open var orientation : HexOrientation
         {
-        didSet { updateHexShape(oldValue != orientation) }
-    }
-    
-    public override var bounds: CGRect
-    {
-        didSet {  updateHexShape(oldValue != bounds) }
-    }
-    
-    public override var frame: CGRect
-    {
-        didSet { updateHexShape(oldValue != frame) }
-    }
- 
-    private func updateHexBorder(doUpdate: Bool = true)
-    {
-        if doUpdate
+        get
         {
-            hexLayer.strokeColor = borderColor?.CGColor
-            hexLayer.lineWidth = borderWidth
-            
-            setNeedsDisplay()
+            return hexView.orientation
+        }
+        set
+        {
+            hexView.orientation = newValue
+            setNeedsLayout()
         }
     }
     
-    private func updateHexShape(doUpdate: Bool = true)
+    open override func layoutSubviews()
     {
-        guard doUpdate == true else { return }
+        super.layoutSubviews()
         
-        let center = bounds.center
-        
-        let width = bounds.width / orientation.hexWidth
-        let height = bounds.height / orientation.hexHeight
-        
-        let edgeLength = min(width, height)// / 2
-        
-        func cornerOffset(corner : Int) -> CGPoint
-        {
-            let angle = π2 *
-                (CGFloat(corner) + orientation.startAngle) / 6
-            
-            return CGPoint(x: edgeLength * cos(angle),
-                           y: edgeLength * sin(angle))
-        }
-        
-        let corners = (0..<6).map { center + cornerOffset($0) }
-        
-        hexLayer.path = closedPath(corners).CGPath
-        
-        setNeedsDisplay()
+        hexView.frame = bounds
     }
     
     // Size
     
-    public override func sizeThatFits(size: CGSize) -> CGSize
+    open override func sizeThatFits(_ size: CGSize) -> CGSize
     {
-        return CGPathGetBoundingBox((layer.mask as? CAShapeLayer)?.path).size
+        return hexView.sizeThatFits(size)
     }
     
     // MARK: - IB
     
-    public override func prepareForInterfaceBuilder()
+    open override func prepareForInterfaceBuilder()
     {
-        updateHexShape()
+        hexView.frame = bounds
     }
     
     // MARK: - Color
     
-    public override var backgroundColor: UIColor?
+    open override var backgroundColor: UIColor?
+        {
+        get
+        {
+            return hexView.backgroundColor
+        }
+        set
+        {
+            hexView.backgroundColor = newValue
+        }
+    }
+    
+    @IBInspectable
+    open var hexBorderColor: UIColor?
+        {
+        get
+        {
+            return hexView.hexBorderColor
+        }
+        set
+        {
+            hexView.hexBorderColor = newValue
+            setNeedsDisplay()
+        }
+    }
+}
+
+/*
+@IBDesignable
+open class HexCollectionViewCell: UICollectionViewCell
+{
+    @IBOutlet open weak var textLabel: UILabel?
+    @IBOutlet open weak var detailLabel: UILabel?
+    
+    @IBInspectable
+    open var hexBorderWidth : CGFloat
+        {
+        get
+        {
+            return hexLayer.lineWidth / 2
+        }
+        set
+        {
+            hexLayer.lineWidth = newValue * 2
+            setNeedsDisplay()
+        }
+    }
+    
+    private let hexLayer = HexLayer()
+    private let maskLayer = HexLayer()
+    
+    // MARK: - Init
+    
+    override init(frame: CGRect)
+    {
+        super.init(frame: frame)
+        setup()
+    }
+    
+    required public init?(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    open override func awakeFromNib()
+    {
+        super.awakeFromNib()
+        setup()
+    }
+    
+    func setup()
+    {
+        layer.insertSublayer(hexLayer, at: 0)
+        layer.mask = maskLayer
+        
+        setNeedsLayout()
+    }
+    
+    open var orientation : HexOrientation
+        {
+        get
+        {
+            return hexLayer.orientation
+        }
+        set
+        {
+            maskLayer.orientation = newValue
+            hexLayer.orientation = newValue
+            setNeedsLayout()
+        }
+    }
+    
+    open override func layoutSubviews()
+    {
+        super.layoutSubviews()
+        
+        maskLayer.frame = bounds
+        hexLayer.frame = bounds
+    }
+    
+    // Size
+    
+    open override func sizeThatFits(_ size: CGSize) -> CGSize
+    {
+        return ((layer.mask as? CAShapeLayer)?.path!.boundingBox.size)!
+    }
+    
+    // MARK: - IB
+    
+    open override func prepareForInterfaceBuilder()
+    {
+        maskLayer.frame = bounds
+        hexLayer.frame = bounds
+    }
+    
+    // MARK: - Color
+    
+    open override var backgroundColor: UIColor?
         {
         get
         {
             guard let cgColor = hexLayer.fillColor else { return nil }
             
-            return UIColor(CGColor: cgColor)
+            return UIColor(cgColor: cgColor)
         }
         set
         {
-            hexLayer.fillColor = newValue?.CGColor
+            hexLayer.fillColor = newValue?.cgColor
+            setNeedsDisplay()
+        }
+    }
+    
+    @IBInspectable
+    open var hexBorderColor: UIColor?
+        {
+        get
+        {
+            guard let cgColor = hexLayer.strokeColor else { return nil }
+            
+            return UIColor(cgColor: cgColor)
+        }
+        set
+        {
+            hexLayer.strokeColor = newValue?.cgColor
+            setNeedsDisplay()
         }
     }
 }
+*/

@@ -14,7 +14,7 @@ class HexagonViewController: ShapeViewController
 {
     var radius : Int = 4
         {
-        didSet { shape = .Hexagon(radius: radius) }
+        didSet { shape = .hexagon(radius: radius) }
     }
     
     override func viewDidLoad()
@@ -35,11 +35,11 @@ class HexagonViewController: ShapeViewController
 
 extension HexagonViewController : SliderDelegate
 {
-    func sliderDidSlide(slider: Slider) {
+    func sliderDidSlide(_ slider: Slider) {
         //NOOP
     }
     
-    func sliderDidEndSliding(slider: Slider)
+    func sliderDidEndSliding(_ slider: Slider)
     {
         radius = slider.intValue
     }

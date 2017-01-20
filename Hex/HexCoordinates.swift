@@ -36,7 +36,7 @@ func * (lhs: CGFloat, rhs: HexCoordinates) -> HexCoordinates
 
 // MARK: - LERP
 
-internal func lerp(a: HexCoordinates, _ b: HexCoordinates, _ t: CGFloat) -> HexCoordinates
+internal func lerp(_ a: HexCoordinates, _ b: HexCoordinates, _ t: CGFloat) -> HexCoordinates
 {
     let t2 = 1 - t
     
@@ -47,7 +47,7 @@ internal func lerp(a: HexCoordinates, _ b: HexCoordinates, _ t: CGFloat) -> HexC
 
 // MARK: - Distance
 
-internal func distance(a: HexCoordinates, _ b: HexCoordinates) -> Int
+internal func distance(_ a: HexCoordinates, _ b: HexCoordinates) -> Int
 {
     let q = abs(a.q - b.q)
     let r = abs(a.r - b.r)
@@ -58,9 +58,9 @@ internal func distance(a: HexCoordinates, _ b: HexCoordinates) -> Int
 
 // MARK: - Line
 
-internal func line(a: HexCoordinates, b: HexCoordinates) -> [HexCoordinates]
+internal func line(_ a: HexCoordinates, b: HexCoordinates) -> [HexCoordinates]
 {
     let N = max(1, distance(a, b))
     
-    return 0.stride(through: N, by: 1).map({ lerp(a, b, CGFloat($0) / CGFloat(N)) })
+    return stride(from: 0, through: N, by: 1).map({ lerp(a, b, CGFloat($0) / CGFloat(N)) })
 }

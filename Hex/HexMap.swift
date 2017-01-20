@@ -8,11 +8,22 @@
 
 import Foundation
 import Collections
+import Heap
 
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
 
 public struct HexMap<Element>
 {
-    private var dict = Dictionary<Hex, Element>()
+    fileprivate var dict = Dictionary<Hex, Element>()
     
     public init(dictionary: Dictionary<Hex, Element>)
     {
@@ -23,11 +34,11 @@ public struct HexMap<Element>
     {
     }
     
-    public init(shape: HexMapShape, initialValueBlock: (hex: Hex) -> Element)
+    public init(shape: HexMapShape, initialValueBlock: (_ hex: Hex) -> Element)
     {
         for hex in shape.hexes
         {
-            dict[hex] = initialValueBlock(hex: hex)
+            dict[hex] = initialValueBlock(hex)
         }
     }
 
@@ -108,7 +119,7 @@ public struct HexMap<Element>
     
     public var hexes : [Hex] { return Array(dict.keys) }
     
-    public func contains(hex: Hex) -> Bool
+    public func contains(_ hex: Hex) -> Bool
     {
         return dict[hex] != nil
     }
@@ -147,13 +158,15 @@ extension HexMap
     public var first: (Hex, Element)? { return dict.first }
 }
 
-// MARK: - SequenceType
+// MARK: - Sequence
 
-extension HexMap: SequenceType
+extension HexMap: Sequence
 {
-    public func generate() -> DictionaryGenerator<Hex, Element>
+    public typealias Iterator = DictionaryIterator<Hex, Element>
+    
+    public func makeIterator() -> DictionaryIterator<Hex, Element>
     {
-        return dict.generate()
+        return dict.makeIterator()
     }
 }
 
@@ -161,16 +174,16 @@ extension HexMap: SequenceType
 
 extension HexMap
 {
-    @warn_unused_result
-    func map<T>(@noescape transform: Element throws -> T) rethrows -> HexMap<T>
+    
+    func map<T>(transform: (Element) throws -> T) rethrows -> HexMap<T>
     {
-        return HexMap<T>(dictionary: try dict.map(transform))
+        return HexMap<T>(dictionary: try dict.map(transform: transform))
     }
 
-    @warn_unused_result
-    func flatMap<T>(@noescape transform: Element throws -> T?) rethrows -> HexMap<T>
+    
+    func flatMap<T>(transform: (Element) throws -> T?) rethrows -> HexMap<T>
     {
-        return HexMap<T>(dictionary: try dict.flatMap(transform))
+        return HexMap<T>(dictionary: try dict.flatMap(transform: transform))
     }
 }
 
@@ -178,30 +191,30 @@ extension HexMap
 
 extension HexMap
 {
-    public func neighborsToHex(hex: Hex) -> [Hex]
+    public func neighborsToHex(_ hex: Hex) -> [Hex]
     {
         return hex.neighbors().filter { self[$0] != nil }
     }
     
-    public func neighborValuesToHex(hex: Hex) -> [(Hex, Element)]
+    public func neighborValuesToHex(_ hex: Hex) -> [(Hex, Element)]
     {
         return hex.neighbors().filter { self[$0] != nil }.map { ($0, self[$0]!) }
     }
 }
 
-public class HexPaths
+open class HexPaths
 {
     var origin: Hex
     var destination: Hex
     
-    public private(set) var nodes = [Hex: [Hex]]()
+    open fileprivate(set) var nodes = [Hex: [Hex]]()
     
     internal init(from origin: Hex, to destination: Hex, in costToEnterMap: HexMap<Int>)
     {
         self.origin = origin
         self.destination = destination
         
-        func mapHex(hex: Hex)
+        func mapHex(_ hex: Hex)
         {
             if nodes[hex] == nil
             {
@@ -217,7 +230,7 @@ public class HexPaths
 
     }
 
-    private func count(hex: Hex) -> Int
+    fileprivate func count(_ hex: Hex) -> Int
     {
         if hex == destination { return 1 }
         
@@ -231,11 +244,11 @@ public class HexPaths
         return c
     }
     
-    public var count : Int { return count(origin) }
+    open var count : Int { return count(origin) }
 
-    public func iteratePaths(closure: [Hex] -> ())
+    open func iteratePaths(_ closure: @escaping ([Hex]) -> ())
     {
-        func traverse(hex: Hex, pathSoFar: [Hex])
+        func traverse(_ hex: Hex, pathSoFar: [Hex])
         {
             let hexes = pathSoFar + [hex]
 
@@ -253,16 +266,17 @@ public class HexPaths
 
 // MARK: - Move Map
 
+
 extension HexMap
 {
     /// Make a map of the cost of moving from `start` and a maximum of `movement` steps.
-    public func moveCostForHex(start: Hex, movement: Int = Int.max, costFunction: Element? -> Int?) -> HexMap<Int>
+    public func moveCostForHex(_ start: Hex, movement: Int = Int.max, costFunction: (Element?) -> Int?) -> HexMap<Int>
     {
-        var enterCostMap = self.flatMap( costFunction )
+        var enterCostMap = self.flatMap( transform: costFunction )
         
         enterCostMap[start] = 0
         
-        var fringe = Heap<(cost: Int, hex: Hex)>(isOrderedBefore: { $0.cost < $1.cost })
+        var fringe = BinaryHeap<(cost: Int, hex: Hex)>(isOrderedBefore: { $0.cost < $1.cost })
         
         fringe.push((0, start))
         
@@ -283,7 +297,7 @@ extension HexMap
         return costMap
     }
 
-    public func pathsFrom(from origin: Hex, to destination: Hex, costFunction: Element? -> Int?) -> HexPaths?
+    public func pathsFrom(from origin: Hex, to destination: Hex, costFunction: (Element?) -> Int?) -> HexPaths?
     {
         guard contains(origin) else { return nil }
         
@@ -341,7 +355,7 @@ extension HexMap
     /// - parameter from: The starting hex.
     /// - parameter to: The destination hex.
     /// - returns: The shortest path(s) from origin to destination, if none could be found an empty array is returned
-    public func shortestPathFrom(from origin: Hex, to destination: Hex, costFunction: Element? -> Int?) -> [[Hex]]
+    public func shortestPathFrom(from origin: Hex, to destination: Hex, costFunction: (Element?) -> Int?) -> [[Hex]]
     {
         guard contains(destination) else { return [] }
         
@@ -351,10 +365,10 @@ extension HexMap
         
         var paths : [[Hex]] = []
 
-        var enterCostMap = self.flatMap( costFunction )
+        var enterCostMap = self.flatMap( transform: costFunction )
         enterCostMap[origin] = 0
         
-        var frontier: Heap<(cost: Int, hexes: [Hex])> = Heap(isOrderedBefore: {$0.cost < $1.cost})
+        var frontier = BinaryHeap<(cost: Int, hexes: [Hex])>(isOrderedBefore: {$0.cost < $1.cost} )
         
         for neighbor in neighborsToHex(origin)
         {
@@ -398,7 +412,7 @@ extension HexMap
 extension HexMap
 {
     ///Given a hex and a range N, which hexes are within N steps from it?
-    public func hexesInRange(N: Int, fromHex hex: Hex) -> Array<Hex>
+    public func hexesInRange(_ N: Int, fromHex hex: Hex) -> Array<Hex>
     {
         return hex.inRange(steps: N).filter { self[$0] != nil }
     }
@@ -407,7 +421,7 @@ extension HexMap
 
 // MARK: - Shapes
 
-private func hexagonWithRadius(radius: Int) -> [Hex]
+private func hexagonWithRadius(_ radius: Int) -> [Hex]
 {
     var hexes : [Hex] = []
     
@@ -427,7 +441,7 @@ private func hexagonWithRadius(radius: Int) -> [Hex]
     return hexes
 }
 
-private func rhombusWithMinQ(minQ: Int,
+private func rhombusWithMinQ(_ minQ: Int,
                              maxQ: Int,
                              minR: Int,
                              maxR: Int) -> [Hex]

@@ -15,23 +15,22 @@ public struct Hex : Hashable
 {
     public let column, row : Int
     
-    
+    ///Initializer with Axial Coordinates
     public init(_ q: Int, _ r: Int)
     {
         column = q
         row = r
         
-        self.hashValue = column * 3011 &+ row
+        hashValue = column * 3011 &+ row
     }
 
+    ///Initializer with Cube Coordinates
     public init(_ q: Int, _ r: Int, _ s: Int)
     {
         assert(q + r + s == 0)
      
         self.init(q, r)
     }
-    
-    
     
     // MARK: - Hashable
     
@@ -94,7 +93,7 @@ private let directions = Array(0..<6)
 
 extension Hex
 {
-    public func neighbor(direction: Int) -> Hex
+    public func neighbor(_ direction: Int) -> Hex
     {
         assert(direction < 6 && direction >= 0)
         
@@ -106,14 +105,14 @@ extension Hex
         return directions.map { neighbor($0) }
     }
     
-    public func diagonalNeighbor(direction: Int, distance: Int = 1) -> Hex
+    public func diagonalNeighbor(_ direction: Int, distance: Int = 1) -> Hex
     {
         assert(direction < 6 && direction >= 0)
         
         return self + ( hex_diagonal_neighbor_directions[direction] * distance )
     }
     
-    public func diagonalNeighbors(distance : Int = 1) -> [Hex]
+    public func diagonalNeighbors(_ distance : Int = 1) -> [Hex]
     {
         return directions.map { diagonalNeighbor($0, distance: distance)  }
     }
@@ -151,7 +150,7 @@ extension Hex
 
 // MARK: - Distance
 
-public func distance(a: Hex, _ b: Hex) -> Int
+public func distance(_ a: Hex, _ b: Hex) -> Int
 {
     let d = a - b
     
@@ -160,7 +159,7 @@ public func distance(a: Hex, _ b: Hex) -> Int
 
 extension Hex
 {
-    public func distanceTo(hex: Hex) -> Int
+    public func distanceTo(_ hex: Hex) -> Int
     {
         return distance(self, hex)
     }
@@ -168,14 +167,14 @@ extension Hex
 
 // MARK: - Line
 
-public func line(a: Hex, _ b: Hex) -> [Hex]
+public func line(_ a: Hex, _ b: Hex) -> [Hex]
 {
     return line(a.coordinates, b: b.coordinates).map { Hex($0) }
 }
 
 extension Hex
 {
-    public func lineTo(hex: Hex) -> [Hex]
+    public func lineTo(_ hex: Hex) -> [Hex]
     {
         return line(self, hex)
     }
@@ -206,8 +205,8 @@ extension Hex
 
 public enum OffsetType : Int
 {
-    case Odd = -1
-    case Even = 1
+    case odd = -1
+    case even = 1
 }
 
 extension Hex
@@ -217,12 +216,12 @@ extension Hex
         let column, row : Int
         switch orientation
         {
-        case .Vertical:
+        case .vertical:
             column = h.col
             row = h.row - Int((h.col + offset.rawValue * (h.col & 1)) / 2)
             
             
-        case .Horizontal:
+        case .horizontal:
             column = h.col - Int((h.row + offset.rawValue * (h.row & 1)) / 2)
             row = h.row
         }
@@ -230,15 +229,15 @@ extension Hex
         self.init(column, row)
     }
     
-    public func offsetCoordinates(orientation: HexOrientation, offset: OffsetType) -> (row: Int, col: Int)
+    public func offsetCoordinates(_ orientation: HexOrientation, offset: OffsetType) -> (row: Int, col: Int)
     {
         switch orientation
         {
-        case .Vertical:
+        case .vertical:
             
             return (column, row + (column + offset.rawValue * (column & 1)) / 2)
             
-        case .Horizontal:
+        case .horizontal:
             
             return (column + (row + offset.rawValue * (row & 1)) / 2, row)
         }

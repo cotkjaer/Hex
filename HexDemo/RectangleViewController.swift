@@ -31,7 +31,7 @@ class RectangleViewController: ShapeViewController
     
     func updateShape()
     {
-        shape = .Rectangle(width: width, height: height)
+        shape = .rectangle(width: width, height: height)
     }
     
     @IBOutlet weak var widthSlider: Slider?
@@ -50,11 +50,11 @@ class RectangleViewController: ShapeViewController
 
 extension RectangleViewController : SliderDelegate
 {
-    func sliderDidSlide(slider: Slider) {
+    func sliderDidSlide(_ slider: Slider) {
         //NOOP
     }
     
-    func sliderDidEndSliding(slider: Slider)
+    func sliderDidEndSliding(_ slider: Slider)
     {
         if slider == heightSlider
         {

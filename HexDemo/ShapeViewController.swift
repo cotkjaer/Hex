@@ -12,7 +12,7 @@ import Collections
 
 class ShapeViewController: UIViewController
 {
-    var shape : HexMapShape = .Custom(hexes: [])
+    var shape : HexMapShape = .custom(hexes: [])
         {
             didSet
             {
@@ -22,7 +22,7 @@ class ShapeViewController: UIViewController
         }
     }
 
-    override func addChildViewController(childController: UIViewController)
+    override func addChildViewController(_ childController: UIViewController)
     {
         super.addChildViewController(childController)
         
@@ -33,7 +33,7 @@ class ShapeViewController: UIViewController
     
     var childHexMapViewController : HexMapViewController?
     {
-        return childViewControllers.find(HexMapViewController)
+        return childViewControllers.find(HexMapViewController.self)
     }
 }
 
@@ -41,13 +41,13 @@ class ShapeViewController: UIViewController
 
 extension ShapeViewController : HexMapViewControllerDelegate
 {
-    func hexMapController(controller: HexMapViewController, didSelectHex hex: Hex)
+    func hexMapController(_ controller: HexMapViewController, didSelectHex hex: Hex)
     {
         controller.reloadCellForHex(hex)
         controller.updateLine()
     }
     
-    func hexMapController(controller: HexMapViewController, didDeselectHex hex: Hex)
+    func hexMapController(_ controller: HexMapViewController, didDeselectHex hex: Hex)
     {
         controller.reloadCellForHex(hex)
         controller.lastSelectedHex = hex

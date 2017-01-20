@@ -8,8 +8,8 @@
 
 public enum HexOrientation
 {
-    case Vertical // flat top
-    case Horizontal // pointy top
+    case vertical // flat top
+    case horizontal // pointy top
 }
 
 
@@ -20,9 +20,9 @@ extension HexOrientation
         {
         switch self
         {
-        case .Horizontal:
+        case .horizontal:
             return (sqrt(3), sqrt(3) / 2, 0, 3/2)
-        case .Vertical:
+        case .vertical:
             return (3/2, 0, sqrt(3)/2, sqrt(3))
         }
     }
@@ -36,9 +36,9 @@ extension HexOrientation
     {
         switch self
         {
-        case .Horizontal:
+        case .horizontal:
             return (sqrt(3) / 3, -1/3, 0, 2/3)
-        case .Vertical:
+        case .vertical:
             return (2/3, 0,-1/3, sqrt(3)/3)
         }
     }
@@ -53,9 +53,9 @@ extension HexOrientation
     {
         switch self
         {
-        case .Horizontal:
+        case .horizontal:
             return 0.5
-        case .Vertical:
+        case .vertical:
             return 0
         }
     }
@@ -69,9 +69,9 @@ extension HexOrientation
     {
         switch self
         {
-        case .Horizontal:
+        case .horizontal:
             return sqrt3
-        case .Vertical:
+        case .vertical:
             return 2
         }
     }
@@ -80,10 +80,10 @@ extension HexOrientation
     {
         switch self
         {
-        case .Horizontal:
+        case .horizontal:
             return 2
             
-        case .Vertical:
+        case .vertical:
             return sqrt3
         }
     }

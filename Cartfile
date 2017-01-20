@@ -1,3 +1,4 @@
 github "cotkjaer/Random"
 github "cotkjaer/Collections"
-github "cotkjaer/UserInterface" == 0.9.4
+github "cotkjaer/UserInterface"
+github "cotkjaer/Heap"

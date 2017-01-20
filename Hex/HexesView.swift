@@ -9,32 +9,32 @@
 import UIKit
 
 @IBDesignable
-public class HexesView: UIView
+open class HexesView: UIView
 {
     /// Orientation ; Horizontal or Vertical
-    public var orientation : HexOrientation
+    open var orientation : HexOrientation
     {
-        set { layout = HexLayout(orientation: newValue, edgeLength: edgeLength, spacing: spacing, scale: 1, offset: CGPointZero) }
+        set { layout = HexLayout(orientation: newValue, edgeLength: edgeLength, spacing: spacing, scale: 1, offset: CGPoint.zero) }
         get { return layout.orientation }
     }
     
     /// The side-length for each hex
     @IBInspectable
-    public var edgeLength : CGFloat
+    open var edgeLength : CGFloat
     {
-        set { layout = HexLayout(orientation: orientation, edgeLength: newValue, spacing: spacing, scale: 1, offset: CGPointZero) }
+        set { layout = HexLayout(orientation: orientation, edgeLength: newValue, spacing: spacing, scale: 1, offset: CGPoint.zero) }
         get { return layout.edgeLength }
     }
     
     /// The spacing between hexes
     @IBInspectable
-    public var spacing : CGFloat
+    open var spacing : CGFloat
     {
-        set { layout = HexLayout(orientation: orientation, edgeLength: edgeLength, spacing: newValue, scale: 1, offset: CGPointZero) }
+        set { layout = HexLayout(orientation: orientation, edgeLength: edgeLength, spacing: newValue, scale: 1, offset: CGPoint.zero) }
         get { return layout.spacing }
     }
     
-    private var layout: HexLayout = HexLayout(orientation: .Horizontal, edgeLength: 30, spacing: 3, scale: 1, offset: CGPointZero)
+    fileprivate var layout: HexLayout = HexLayout(orientation: .horizontal, edgeLength: 30, spacing: 3, scale: 1, offset: CGPoint.zero)
     {
         didSet { updateLayout(oldValue != layout) }
     }
@@ -53,7 +53,7 @@ public class HexesView: UIView
         setup()
     }
     
-    public override func awakeFromNib()
+    open override func awakeFromNib()
     {
         super.awakeFromNib()
         setup()
@@ -64,21 +64,21 @@ public class HexesView: UIView
         updateLayout()
     }
     
-    public override var bounds: CGRect
+    open override var bounds: CGRect
         {
         didSet {  updateLayout(oldValue != bounds) }
     }
     
-    public override var frame: CGRect
+    open override var frame: CGRect
         {
         didSet { updateLayout(oldValue != frame) }
     }
     
     // MARK: - Hexes
     
-    public var hexes : [Hex] { return Array(hexViewsByHex.keys) }
+    open var hexes : [Hex] { return Array(hexViewsByHex.keys) }
     
-    public func addHex(hex: Hex?) -> HexView?
+    open func addHex(_ hex: Hex?) -> HexView?
     {
         guard let hex = hex else { return nil }
         
@@ -97,7 +97,8 @@ public class HexesView: UIView
         return hexView
     }
     
-    public func removeHex(hex: Hex?) -> Bool
+    @discardableResult
+    open func removeHex(_ hex: Hex?) -> Bool
     {
         guard let hex = hex else { return false }
         
@@ -115,9 +116,9 @@ public class HexesView: UIView
     
     // MARK: - HexViews
     
-    private var hexViewsByHex = Dictionary<Hex, HexView>()
+    fileprivate var hexViewsByHex = Dictionary<Hex, HexView>()
     
-    public func hexViewForHex(hex: Hex?) -> HexView?
+    open func hexViewForHex(_ hex: Hex?) -> HexView?
     {
         guard let hex = hex else { return nil }
         
@@ -126,7 +127,7 @@ public class HexesView: UIView
    
     // MARK: - Layout
     
-    func updateLayout(needed: Bool = true)
+    func updateLayout(_ needed: Bool = true)
     {
         guard needed else { return }
         
@@ -137,7 +138,7 @@ public class HexesView: UIView
             frame = frame.union(layout.boundsForHex(hex))
         }
         
-        if frame.origin != CGPointZero
+        if frame.origin != CGPoint.zero
         {
             let offset = CGPoint(x: layout.offset.x - frame.origin.x, y: layout.offset.y - frame.origin.y)
 
@@ -148,7 +149,7 @@ public class HexesView: UIView
         setNeedsLayout()
     }
     
-    public override func layoutSubviews()
+    open override func layoutSubviews()
     {
         super.layoutSubviews()
         
@@ -160,7 +161,7 @@ public class HexesView: UIView
     
     // MARK: - Size
     
-    public override func sizeThatFits(size: CGSize) -> CGSize
+    open override func sizeThatFits(_ size: CGSize) -> CGSize
     {
         let hexesSize = layout.boundsForHexes(hexes).size
         
@@ -169,11 +170,9 @@ public class HexesView: UIView
     
     // MARK: - IB
     
-    public override func prepareForInterfaceBuilder()
+    open override func prepareForInterfaceBuilder()
     {
         updateLayout()
     }
-    
-    
 }
 

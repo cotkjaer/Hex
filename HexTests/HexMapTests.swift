@@ -14,7 +14,7 @@ class HexMapTests: XCTestCase
 {
     func test_time_to_init_HexMap()
     {
-        measureBlock
+        measure
             {
                 let _ = HexMap(rectangleWithWidth: 70, height: 60, repeatedValue: true)
         }

@@ -24,7 +24,7 @@ class HexTests: XCTestCase
     
     func test_time_to_initialize()
     {
-        measureBlock
+        measure
             {
                 var _ = HexMap<Bool>(rectangleWithWidth: 20, height: 70, repeatedValue: true)
         }
@@ -57,7 +57,7 @@ class HexTests: XCTestCase
         
         let hex : Hex = HexZero
         
-        measureBlock
+        measure
             {
                 let _ = map.moveCostForHex(hex, costFunction: { _ in 1 })
         }

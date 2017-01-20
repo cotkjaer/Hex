@@ -26,7 +26,7 @@ class TriangleViewController: ShapeViewController
     
     func updateShape()
     {
-        shape = .Triangle(size: size)
+        shape = .triangle(size: size)
     }
     
     @IBOutlet weak var sizeSlider: Slider?
@@ -40,11 +40,11 @@ class TriangleViewController: ShapeViewController
 
 extension TriangleViewController : SliderDelegate
 {
-    func sliderDidSlide(slider: Slider) {
+    func sliderDidSlide(_ slider: Slider) {
         //NOOP
     }
     
-    func sliderDidEndSliding(slider: Slider)
+    func sliderDidEndSliding(_ slider: Slider)
     {
         size = slider.intValue
     }

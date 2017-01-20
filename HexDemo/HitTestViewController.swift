@@ -17,13 +17,13 @@ class HitTestViewController: UIViewController
     {
         super.viewDidLoad()
         
-        hexView?.borderColor = UIColor.blueColor()
-        hexView?.borderSize = 2
+        hexView?.hexBorderColor = UIColor.blue
+        hexView?.hexBorderWidth = 2
     }
     
-    @IBAction func handleTap(sender: UITapGestureRecognizer)
+    @IBAction func handleTap(_ sender: UITapGestureRecognizer)
     {
-        guard sender.state == .Ended else { return }
+        guard sender.state == .ended else { return }
         
         guard let hexView = hexView else { return }
         
@@ -31,11 +31,11 @@ class HitTestViewController: UIViewController
 //        
 //        if hexView.hitTest(point, withEvent: nil) == hexView
 //        {
-            UIView.animateWithDuration(0.2, animations: {
-                hexView.backgroundColor = UIColor.redColor()
+            UIView.animate(withDuration: 0.2, animations: {
+                hexView.backgroundColor = UIColor.red
                 }, completion: { (completed) in
             
-                    UIView.animateWithDuration(0.1) { hexView.backgroundColor = UIColor.whiteColor() }
+                    UIView.animate(withDuration: 0.1, animations: { hexView.backgroundColor = UIColor.white }) 
                     
             })
 //        }

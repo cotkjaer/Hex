@@ -30,9 +30,9 @@ extension CGRect
 
 // MARK: - Bounds
 
-func bounds<S: CollectionType where S.Generator.Element == CGPoint>(points :S) -> CGRect
+func bounds<S: Collection>(_ points :S) -> CGRect where S.Iterator.Element == CGPoint
 {
-    guard let first = points.first else { return CGRectZero }
+    guard let first = points.first else { return CGRect.zero }
     
     var (minX, maxX, minY, maxY) = (first.x, first.x, first.y, first.y)
     
@@ -48,29 +48,30 @@ func bounds<S: CollectionType where S.Generator.Element == CGPoint>(points :S) -
     return CGRect(x: minX, y: minY, width: maxX - minX, height: maxY - minY)
 }
 
-func bounds<S: CollectionType where S.Generator.Element == CGRect>(rects :S) -> CGRect
+func bounds<S: Collection>(_ rects :S) -> CGRect where S.Iterator.Element == CGRect
 {
-    guard let first = rects.first else { return CGRectZero }
+    guard let first = rects.first else { return CGRect.zero }
     
-    return rects.reduce(first, combine: { $0.union($1) })
+    return rects.reduce(first, { $0.union($1) })
 }
 
-func closedPath<S: CollectionType where S.Generator.Element == CGPoint>(points :S) -> UIBezierPath
+func closedPath<S: Sequence>(_ points :S) -> UIBezierPath where S.Iterator.Element == CGPoint
 {
     let path = UIBezierPath()
     
-    guard let first = points.first else { return path }
-    
-    path.moveToPoint(first)
-    
-    let startIndex = points.startIndex.advancedBy(1)
-    
-    for index in startIndex..<points.endIndex
+    for point in points
     {
-        path.addLineToPoint(points[index])
+        if path.isEmpty
+        {
+            path.move(to: point)
+        }
+        else
+        {
+            path.addLine(to: point)
+        }
     }
     
-    path.closePath()
+    path.close()
     
     return path
 }

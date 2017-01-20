@@ -9,49 +9,49 @@
 import UIKit
 
 /// The default orientation for hexes
-let DefaultHexOrientation : HexOrientation = .Horizontal
+let DefaultHexOrientation: HexOrientation = .horizontal
 
 /// The default side-length for each hex
-let DefaultHexEdgeLength : CGFloat = 60
+let DefaultHexEdgeLength: CGFloat = 60
 
 /// The default spacing between hexes
-let DefaultHexSpacing : CGFloat = 1
+let DefaultHexSpacing: CGFloat = 1
 
 
 public enum HexesCollectionViewLayoutScrollDirection
 {
-    case None // No scrolling - all hexes must be fitted onto the screen
-    case Both // Scrolling is allowed in both directions
-    case Horizontal // Hexes are fitted in the Vertical direction only
-    case Vertical // Hexes are fitted in the Vertical direction only
+    case none // No scrolling - all hexes must be fitted onto the screen
+    case both // Scrolling is allowed in both directions
+    case horizontal // Hexes are fitted in the Vertical direction only
+    case vertical // Hexes are fitted in the Horizontal direction only
 }
 
-public class HexesCollectionViewLayout: UICollectionViewLayout
+open class HexesCollectionViewLayout: UICollectionViewLayout
 {
-    public var scrollDirection : HexesCollectionViewLayoutScrollDirection = .None
+    open var scrollDirection : HexesCollectionViewLayoutScrollDirection = .none
     
-    public var hexOrientation : HexOrientation = DefaultHexOrientation
+    open var hexOrientation : HexOrientation = DefaultHexOrientation
         { didSet { invalidateLayout() } }
     
     /// The minimal side-length for each hex
-    public var hexEdgeLength : CGFloat = DefaultHexEdgeLength
+    open var hexEdgeLength : CGFloat = DefaultHexEdgeLength
         { didSet { invalidateLayout() } }
     
     /// The minimal spacing between hexes
-    public var hexSpacing : CGFloat = DefaultHexSpacing
+    open var hexSpacing : CGFloat = DefaultHexSpacing
         { didSet { invalidateLayout() } }
     
-    private var hexes: [Hex] = []
+    fileprivate var hexes: [Hex] = []
     
-    private var cachedAttributes = Array<UICollectionViewLayoutAttributes>()
+    fileprivate var cachedAttributes = Array<UICollectionViewLayoutAttributes>()
     
-    private var hexLayout : HexLayout = HexLayout(orientation: DefaultHexOrientation, edgeLength: DefaultHexEdgeLength, spacing: DefaultHexSpacing, scale: 1, offset: CGPointZero)
+    fileprivate var hexLayout : HexLayout = HexLayout(orientation: DefaultHexOrientation, edgeLength: DefaultHexEdgeLength, spacing: DefaultHexSpacing, scale: 1, offset: CGPoint.zero)
     
-    private var hexesBounds : CGRect = CGRectZero
+    fileprivate var hexesBounds : CGRect = CGRect.zero
     
-    override public func prepareLayout()
+    override open func prepare()
     {
-        super.prepareLayout()
+        super.prepare()
 
         guard let collectionView = collectionView else {
             return
@@ -61,7 +61,7 @@ public class HexesCollectionViewLayout: UICollectionViewLayout
         
         hexes = (collectionView.dataSource as? HexesCollectionViewController)?.hexes ?? []
         
-        let nominalLayout = HexLayout(orientation: hexOrientation, edgeLength: hexEdgeLength, spacing: hexSpacing, scale: 1, offset: CGPointZero)
+        let nominalLayout = HexLayout(orientation: hexOrientation, edgeLength: hexEdgeLength, spacing: hexSpacing, scale: 1, offset: CGPoint.zero)
         
         hexesBounds = bounds(hexes.map({ nominalLayout.boundsForHex($0)}))
         
@@ -74,101 +74,88 @@ public class HexesCollectionViewLayout: UICollectionViewLayout
 
         switch scrollDirection
         {
-        case .None:
+        case .none:
             
             let horizontalScale = viewBounds.width / hexesBounds.width
             let verticalScale = viewBounds.height / hexesBounds.height
             
             switch collectionView.contentMode
             {
-            case .ScaleAspectFill, .ScaleToFill, .ScaleAspectFit:
+            case .scaleAspectFill, .scaleToFill, .scaleAspectFit:
                 scale = min(horizontalScale, verticalScale)
                 
                 horizontalOffsetModification = (viewBounds.width - hexesBounds.width * scale) / 2
                 verticalOffsetModification = (viewBounds.height - hexesBounds.height * scale) / 2
 
-            case .Bottom:
+            case .bottom:
                 
                 scale = min(1, min(horizontalScale, verticalScale))
                 
                 horizontalOffsetModification = (viewBounds.width - hexesBounds.width * scale) / 2
                 verticalOffsetModification =  viewBounds.height - hexesBounds.height * scale
 
-            case .BottomLeft:
+            case .bottomLeft:
                 scale = min(1, min(horizontalScale, verticalScale))
                 
                 horizontalOffsetModification = 0
                 verticalOffsetModification =  viewBounds.height - hexesBounds.height * scale
                 
-            case .BottomRight:
+            case .bottomRight:
                 scale = min(1, min(horizontalScale, verticalScale))
                 
                 horizontalOffsetModification = viewBounds.width - hexesBounds.width * scale
                 verticalOffsetModification =  viewBounds.height - hexesBounds.height * scale
 
-
-            case .Top:
+            case .top:
                 scale = min(1, min(horizontalScale, verticalScale))
                 
                 horizontalOffsetModification = (viewBounds.width - hexesBounds.width * scale) / 2
                 verticalOffsetModification = 0
                 
-            case .TopLeft:
+            case .topLeft:
                 scale = min(1, min(horizontalScale, verticalScale))
                 
                 horizontalOffsetModification = 0
                 verticalOffsetModification = 0
                 
-            case .TopRight:
+            case .topRight:
                 scale = min(1, min(horizontalScale, verticalScale))
                 
                 horizontalOffsetModification = viewBounds.width - hexesBounds.width * scale
                 verticalOffsetModification = 0
 
-            case .Center, .Redraw:
+            case .center, .redraw:
                 scale = min(1, min(horizontalScale, verticalScale))
                 
                 horizontalOffsetModification = (viewBounds.width - hexesBounds.width * scale) / 2
                 verticalOffsetModification = (viewBounds.height - hexesBounds.height * scale) / 2
                 
-            case .Left:
+            case .left:
                 
                 scale = min(1, min(horizontalScale, verticalScale))
                 
                 horizontalOffsetModification = 0
                 verticalOffsetModification = (viewBounds.height - hexesBounds.height * scale) / 2
                 
-            case .Right:
+            case .right:
                 scale = min(1, min(horizontalScale, verticalScale))
                 
                 horizontalOffsetModification = viewBounds.width - hexesBounds.width * scale
                 verticalOffsetModification = (viewBounds.height - hexesBounds.height * scale) / 2
-                
-//            default:
-//                
-//                scale = min(1, min(horizontalScale, verticalScale))
-//                
-//                horizontalOffsetModification = (viewBounds.width - hexesBounds.width * scale) / 2
-//                verticalOffsetModification = (viewBounds.height - hexesBounds.height * scale) / 2
             }
             
-        case .Both:
+        case .both:
             
             scale = 1
             
-//            horizontalOffsetModification = 0
-//            verticalOffsetModification = 0
-
-            
-        case .Horizontal:
+        case .horizontal:
             
             scale = min(1, viewBounds.height / hexesBounds.height)
             
             horizontalOffsetModification = 0
             verticalOffsetModification = (viewBounds.height - hexesBounds.height * scale) / 2
-
             
-        case .Vertical:
+        case .vertical:
             
             scale = min(1, viewBounds.width / hexesBounds.width)
             
@@ -181,48 +168,48 @@ public class HexesCollectionViewLayout: UICollectionViewLayout
 
         hexLayout = HexLayout(orientation: hexOrientation, edgeLength: hexEdgeLength, spacing: hexSpacing, scale: scale, offset: CGPoint(x:horizontalOffset, y: verticalOffset))
         
-        cachedAttributes = hexes.enumerate().flatMap { layoutAttributesForHex($0.element, atIndex: $0.index) }
+        cachedAttributes = hexes.enumerated().flatMap { layoutAttributesForHex($0.element, atIndex: $0.offset) }
         
         hexesBounds = bounds(cachedAttributes.map({ $0.frame }))
     }
     
-    func layoutAttributesForHex(hex: Hex, atIndex i: Int) -> UICollectionViewLayoutAttributes
+    func layoutAttributesForHex(_ hex: Hex, atIndex i: Int) -> UICollectionViewLayoutAttributes
     {
-        let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: NSIndexPath(forItem: i, inSection: 0))
+        let attributes = UICollectionViewLayoutAttributes(forCellWith: IndexPath(item: i, section: 0))
         
         attributes.frame = hexLayout.boundsForHex(hex)
         
         return attributes
     }
     
-    public func centerForHex(hex: Hex) -> CGPoint
+    open func centerForHex(_ hex: Hex) -> CGPoint
     {
         return hexLayout.centerForHex(hex: hex)
     }
     
-    public override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]?
+    open override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]?
     {
         let attrs = cachedAttributes.filter { $0.frame.intersects(rect) }
         
         return attrs
     }
     
-    public override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes?
+    open override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes?
     {
-        let i = indexPath.item
+        let i = (indexPath as NSIndexPath).item
         
         guard i < cachedAttributes.count && i >= 0 else { return nil }
         
         return cachedAttributes[i]
     }
     
-    override public func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool
+    override open func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool
     {
-        return scrollDirection != .Both
+        return scrollDirection != .both
     }
     
-    public override func collectionViewContentSize() -> CGSize
+    open override var collectionViewContentSize : CGSize
     {
-        return CGSize(width: hexesBounds.maxX, height: hexesBounds.maxY) // hexesBounds.size
+        return CGSize(width: hexesBounds.maxX, height: hexesBounds.maxY)
     }
 }

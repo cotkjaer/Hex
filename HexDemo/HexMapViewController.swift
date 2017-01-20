@@ -12,8 +12,8 @@ import Random
 
 protocol HexMapViewControllerDelegate
 {
-    func hexMapController(controller: HexMapViewController, didSelectHex: Hex)
-    func hexMapController(controller: HexMapViewController, didDeselectHex: Hex)
+    func hexMapController(_ controller: HexMapViewController, didSelectHex: Hex)
+    func hexMapController(_ controller: HexMapViewController, didDeselectHex: Hex)
 }
 
 class HexMapViewController: HexesCollectionViewController
@@ -33,9 +33,9 @@ class HexMapViewController: HexesCollectionViewController
             
             removePathLayers()
             
-            for ip in collectionView?.indexPathsForSelectedItems() ?? []
+            for ip in collectionView?.indexPathsForSelectedItems ?? []
             {
-            collectionView?.deselectItemAtIndexPath(ip, animated: false)
+            collectionView?.deselectItem(at: ip, animated: false)
             }
             
             updateLine()
@@ -48,12 +48,12 @@ class HexMapViewController: HexesCollectionViewController
     {
         hexesLayout?.hexSpacing = 5
         hexesLayout?.hexEdgeLength = 35
-        hexesLayout?.scrollDirection = .None
+        hexesLayout?.scrollDirection = .none
         
         super.viewDidLoad()
     }
     
-    override func configureCell(cell: UICollectionViewCell, forHex hex: Hex)
+    override func configureCell(_ cell: UICollectionViewCell, forHex hex: Hex)
     {
         if let cell = cell as? HexCollectionViewCell
         {
@@ -64,15 +64,15 @@ class HexMapViewController: HexesCollectionViewController
             }
             else
             {
-                cell.backgroundColor = UIColor.darkGrayColor()
+                cell.backgroundColor = UIColor.darkGray
             }
             
-            if cell.selected
+            if cell.isSelected
             {
-                cell.backgroundColor = UIColor.redColor()
+                cell.backgroundColor = UIColor.red
             }
             
-            let offset = hex.offsetCoordinates(orientation, offset: .Odd)
+            let offset = hex.offsetCoordinates(orientation, offset: .odd)
             
             cell.detailLabel?.text = "\(offset.col + 1)x\(offset.row + 1)"
             
@@ -87,22 +87,22 @@ class HexMapViewController: HexesCollectionViewController
 
             if hexLine.contains(hex)
             {
-                cell.backgroundColor = cell.backgroundColor?.colorWithAlphaComponent(0.5)
+                cell.backgroundColor = cell.backgroundColor?.withAlphaComponent(0.5)
                 
-                cell.borderColor = UIColor.orangeColor()
-                cell.borderWidth = 10
+                cell.borderColor = UIColor.orange
+                cell.hexBorderWidth = 10
             }
             else
             {
-                cell.borderColor = UIColor.clearColor()
-                cell.borderWidth = 0
+                cell.borderColor = UIColor.clear
+                cell.hexBorderWidth = 0
             }
         }
     }
     
     var lastSelectedHex : Hex?
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         guard let hex = hexForIndexPath(indexPath) else { return }
 
@@ -116,7 +116,7 @@ class HexMapViewController: HexesCollectionViewController
 //        }
     }
     
-    override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath)
+    override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath)
     {
         guard let hex = hexForIndexPath(indexPath) else { return }
 
@@ -131,7 +131,7 @@ class HexMapViewController: HexesCollectionViewController
 //        }
     }
     
-    var selectedIndexPath : NSIndexPath? { return collectionView?.indexPathsForSelectedItems()?.first }
+    var selectedIndexPath : IndexPath? { return collectionView?.indexPathsForSelectedItems?.first }
     
     let lineLayer = CAShapeLayer()
     
@@ -143,7 +143,7 @@ class HexMapViewController: HexesCollectionViewController
         {
             //Movement
             
-            func c(b: Bool?) -> Int?
+            func c(_ b: Bool?) -> Int?
             {
                 return b == true ? 1 : nil
             }
@@ -156,11 +156,11 @@ class HexMapViewController: HexesCollectionViewController
                 
                 let path = UIBezierPath()
                 
-                path.moveToPoint(hexLayout.centerForHex(h))
-                path.addLineToPoint(hexLayout.centerForHex(s))
+                path.move(to: hexLayout.centerForHex(h))
+                path.addLine(to: hexLayout.centerForHex(s))
                 
-                lineLayer.path = path.CGPath
-                lineLayer.strokeColor = UIColor.blackColor().colorWithAlphaComponent(0.5).CGColor
+                lineLayer.path = path.cgPath
+                lineLayer.strokeColor = UIColor.black.withAlphaComponent(0.5).cgColor
                 lineLayer.lineWidth = hexLayout.hexEdgeLength / 3
                 lineLayer.lineCap = kCALineCapRound
                 
@@ -169,8 +169,8 @@ class HexMapViewController: HexesCollectionViewController
                 updatePaths(s, destination: h)
             }
             
-            collectionView?.indexPathsForVisibleItems().forEach({ (indexPath) in
-                if let hex = hexForIndexPath(indexPath), let cell = collectionView?.cellForItemAtIndexPath(indexPath)
+            collectionView?.indexPathsForVisibleItems.forEach({ (indexPath) in
+                if let hex = hexForIndexPath(indexPath), let cell = collectionView?.cellForItem(at: indexPath)
                 {
                     configureCell(cell, forHex: hex)
                 }
@@ -185,11 +185,11 @@ class HexMapViewController: HexesCollectionViewController
         collectionView?.layer.sublayers?.filter({$0.name == "hexpath"}).forEach({$0.removeFromSuperlayer()})
     }
     
-    func updatePaths(origin: Hex, destination: Hex)
+    func updatePaths(_ origin: Hex, destination: Hex)
     {
         removePathLayers()
         
-        func c(b: Bool?) -> Int?
+        func c(_ b: Bool?) -> Int?
         {
             return b == true ? 1 : nil
         }
@@ -200,12 +200,12 @@ class HexMapViewController: HexesCollectionViewController
         {
             for dest in dests
             {
-                addLayerForLineFrom(node, h2: dest, color: UIColor.redColor())
+                addLayerForLineFrom(node, h2: dest, color: UIColor.red)
             }
         }
     }
 
-    func addLayerForLineFrom(h1: Hex, h2: Hex, color: UIColor)
+    func addLayerForLineFrom(_ h1: Hex, h2: Hex, color: UIColor)
     {
         if let hexLayout = hexesLayout
         {
@@ -213,14 +213,14 @@ class HexMapViewController: HexesCollectionViewController
             
             let layer = CAShapeLayer()
             
-            path.moveToPoint(hexLayout.centerForHex(h1))
+            path.move(to: hexLayout.centerForHex(h1))
             
-            path.addLineToPoint(hexLayout.centerForHex(h2))
+            path.addLine(to: hexLayout.centerForHex(h2))
             
             layer.fillColor = nil
             layer.name = "hexpath"
-            layer.path = path.CGPath
-            layer.strokeColor = color.colorWithAlphaComponent(0.5).CGColor
+            layer.path = path.cgPath
+            layer.strokeColor = color.withAlphaComponent(0.5).cgColor
             layer.lineWidth = hexLayout.hexEdgeLength / 4
             layer.lineCap = kCALineCapRound
             layer.lineJoin = kCALineJoinRound
@@ -229,25 +229,25 @@ class HexMapViewController: HexesCollectionViewController
         }
     }
     
-    func updatePath(hexpath: [Hex], origin: Hex, layer: CAShapeLayer, color: UIColor)
+    func updatePath(_ hexpath: [Hex], origin: Hex, layer: CAShapeLayer, color: UIColor)
     {
         if let hexLayout = hexesLayout
         {
             let path = UIBezierPath()
             
-            path.moveToPoint(hexLayout.centerForHex(origin))
+            path.move(to: hexLayout.centerForHex(origin))
             
             collectionView?.layer.addSublayer(lineLayer)
             
             for hex in hexpath
             {
-                path.addLineToPoint(hexLayout.centerForHex(hex))
+                path.addLine(to: hexLayout.centerForHex(hex))
             }
             
             layer.fillColor = nil
             layer.name = "hexpath"
-            layer.path = path.CGPath
-            layer.strokeColor = color.colorWithAlphaComponent(0.5).CGColor
+            layer.path = path.cgPath
+            layer.strokeColor = color.withAlphaComponent(0.5).cgColor
             layer.lineWidth = hexLayout.hexEdgeLength / 3
             layer.lineCap = kCALineCapRound
             layer.lineJoin = kCALineJoinRound

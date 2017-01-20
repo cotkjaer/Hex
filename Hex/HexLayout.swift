@@ -40,7 +40,7 @@ struct HexLayout
         return CGPoint(x: offset.x + x, y: offset.y + y)
     }
     
-    func hex(point: CGPoint) -> Hex
+    func hex(_ point: CGPoint) -> Hex
     {
         let B = orientation.backwardMatrix
         
@@ -58,7 +58,7 @@ struct HexLayout
         return Hex(q: q, r: r, s: s)
     }
     
-    private func cornerOffset(corner : Int) -> CGPoint
+    fileprivate func cornerOffset(_ corner : Int) -> CGPoint
     {
         let angle = π2 *
             (CGFloat(corner) + orientation.startAngle) / 6
@@ -82,21 +82,21 @@ struct HexLayout
 
 extension HexLayout
 {
-    func boundsForHex(hex: Hex) -> CGRect
+    func boundsForHex(_ hex: Hex) -> CGRect
     {
         return bounds(corners(hex: hex))
     }
 
-    func boundsForHex(hex: Hex?) -> CGRect?
+    func boundsForHex(_ hex: Hex?) -> CGRect?
     {
         guard let hex = hex else { return nil }
         
         return boundsForHex(hex)
     }
     
-    func boundsForHexes<S: CollectionType where S.Generator.Element == Hex>(hexes: S) -> CGRect
+    func boundsForHexes<S: Collection>(_ hexes: S) -> CGRect where S.Iterator.Element == Hex
     {
-        guard !hexes.isEmpty else { return CGRectZero }
+        guard !hexes.isEmpty else { return CGRect.zero }
         
         var b = boundsForHex(hexes.first!)
         

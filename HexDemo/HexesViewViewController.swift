@@ -11,7 +11,7 @@ import Hex
 
 class HexesViewViewController: UIViewController
 {
-    var shape : HexMapShape = HexMapShape.Rectangle(width: 5, height: 5)
+    var shape : HexMapShape = HexMapShape.rectangle(width: 5, height: 5)
         {
         didSet
         {
@@ -23,7 +23,7 @@ class HexesViewViewController: UIViewController
     
     @IBOutlet weak var hexesView: HexesView?
     
-    override func addChildViewController(childController: UIViewController)
+    override func addChildViewController(_ childController: UIViewController)
     {
         super.addChildViewController(childController)
         
@@ -38,7 +38,7 @@ class HexesViewViewController: UIViewController
     
     var childHexMapViewController : HexMapViewController?
     {
-        return childViewControllers.find(HexMapViewController)
+        return childViewControllers.find(HexMapViewController.self)
     }
 }
 
@@ -46,18 +46,18 @@ class HexesViewViewController: UIViewController
 
 extension HexesViewViewController : HexMapViewControllerDelegate
 {
-    func hexMapController(controller: HexMapViewController, didSelectHex hex: Hex)
+    func hexMapController(_ controller: HexMapViewController, didSelectHex hex: Hex)
     {
         controller.reloadCellForHex(hex)
 
         guard let hexView = hexesView?.addHex(hex) else { return }
         
-        hexView.backgroundColor = UIColor.purpleColor()
+        hexView.backgroundColor = UIColor.purple
         hexView.borderSize = 2
-        hexView.borderColor = UIColor.orangeColor()
+        hexView.borderColor = UIColor.orange
     }
     
-    func hexMapController(controller: HexMapViewController, didDeselectHex hex: Hex)
+    func hexMapController(_ controller: HexMapViewController, didDeselectHex hex: Hex)
     {
         controller.reloadCellForHex(hex)
         

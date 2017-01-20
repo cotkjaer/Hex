@@ -9,8 +9,29 @@
 import UIKit
 import UserInterface
 
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
+
 @IBDesignable
-public class HexView: UIView
+open class HexView: UIView
 {
     // MARK: - Init
     
@@ -26,7 +47,7 @@ public class HexView: UIView
         setup()
     }
     
-    public override func awakeFromNib()
+    open override func awakeFromNib()
     {
         super.awakeFromNib()
         setup()
@@ -34,121 +55,81 @@ public class HexView: UIView
     
     func setup()
     {
+        layer.insertSublayer(hexLayer, at: 0)
+        layer.mask = maskLayer
+        hexLayer.fillColor = nil
+        
         updateHexMask()
     }
     
-    public var orientation : HexOrientation = DefaultHexOrientation
+    open var orientation : HexOrientation = DefaultHexOrientation
         {
         didSet { updateHexMask(oldValue != orientation) }
     }
     
-    public override var bounds: CGRect
+    open override var bounds: CGRect
         {
         didSet {  updateHexMask(oldValue != bounds) }
     }
     
-    public override var frame: CGRect
+    open override var frame: CGRect
         {
         didSet { updateHexMask(oldValue != frame) }
     }
     
-    public override var borderSize: CGFloat
+    public var hexBorderWidth: CGFloat = 0
     {
-        didSet { updateHexBorder(borderSize != oldValue) }
+        didSet { updateHexLayer(hexBorderWidth != oldValue) }
     }
     
-    public override var borderColor: UIColor?
+    open var hexBorderColor: UIColor? = nil
     {
-        didSet { updateHexBorder(borderColor != oldValue) }
+        didSet { updateHexLayer(hexBorderColor != oldValue) }
     }
     
-    private func updateHexBorder(doUpdate: Bool = true)
+    private func updateHexLayer(_ doUpdate: Bool = true)
     {
         guard doUpdate else { return }
         
-        guard borderColor?.alpha > 0.001 && borderSize > 0 else
-        {
-            borderLayer.removeFromSuperlayer(); return
-        }
+        maskLayer.frame = bounds
         
-        borderLayer.path = maskLayer.path
-        borderLayer.strokeColor = borderColor?.CGColor
-        borderLayer.lineWidth = borderSize * 2
-        borderLayer.fillColor = nil
-        layer.addSublayer(borderLayer)
+        hexLayer.frame = bounds
+        hexLayer.strokeColor = hexBorderColor?.cgColor
+        hexLayer.lineWidth = hexBorderWidth * 2
     }
     
-    let borderLayer = CAShapeLayer()
-    
-    private func updateHexMask(doUpdate: Bool = true)
+    fileprivate func updateHexMask(_ doUpdate: Bool = true)
     {
         guard doUpdate else { return }
+
+        maskLayer.frame = bounds
         
-        let center = bounds.center
-        
-        let width = bounds.width / orientation.hexWidth
-        let height = bounds.height / orientation.hexHeight
-        
-        let edgeLength = min(width, height)// / 2
-        
-        func cornerOffset(corner : Int) -> CGPoint
-        {
-            let angle = π2 *
-                (CGFloat(corner) + orientation.startAngle) / 6
-            
-            return CGPoint(x: edgeLength * cos(angle),
-                           y: edgeLength * sin(angle))
-        }
-        
-        func corners() -> [CGPoint]
-        {
-            return (0..<6).map {
-                return center + cornerOffset($0)
-            }
-        }
-        
-        func pathForHex() -> CGPath
-        {
-            let points = corners()
-            
-            let path = closedPath(points)
-            
-            return path.CGPath
-        }
-        
-        maskLayer.path = pathForHex()
-        
-        updateHexBorder()
+        updateHexLayer()
         
         setNeedsDisplay()
     }
     
-    lazy var maskLayer : CAShapeLayer =
-        {
-            let maskLayer = CAShapeLayer()
-            self.layer.mask = maskLayer
-            return maskLayer
-    }()
+    private let hexLayer = HexLayer()
     
-    // Size
+    private let maskLayer = HexLayer()
     
-    public override func sizeThatFits(size: CGSize) -> CGSize
+    open override func sizeThatFits(_ size: CGSize) -> CGSize
     {
-        return CGPathGetBoundingBox((layer.mask as? CAShapeLayer)?.path).size
+        return ((layer.mask as? CAShapeLayer)?.path!.boundingBox.size)!
     }
     
     // MARK: - IB
     
-    public override func prepareForInterfaceBuilder()
+    open override func prepareForInterfaceBuilder()
     {
         updateHexMask()
     }
     
     // MARK: - Hittest
     
-    public override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView?
+    open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView?
     {
-        var view = super.hitTest(point, withEvent: event)
+        var view = super.hitTest(point, with: event)
         
         if view == self && !isPointInHex(point)
         {
@@ -158,9 +139,9 @@ public class HexView: UIView
         return view
     }
     
-    public func isPointInHex(point: CGPoint) -> Bool
+    open func isPointInHex(_ point: CGPoint) -> Bool
     {
-        return CGPathContainsPoint(maskLayer.path, nil, point, false)
+        return maskLayer.path?.contains(point) == true
     }
 }
 

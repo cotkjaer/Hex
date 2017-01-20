@@ -31,7 +31,7 @@ class RhombusViewController: ShapeViewController
     
     func updateShape()
     {
-        shape = .Rhombus(columns: columns, rows: rows)
+        shape = .rhombus(columns: columns, rows: rows)
     }
     
     @IBOutlet weak var columnsSlider: Slider?
@@ -50,11 +50,11 @@ class RhombusViewController: ShapeViewController
 
 extension RhombusViewController : SliderDelegate
 {
-    func sliderDidSlide(slider: Slider) {
+    func sliderDidSlide(_ slider: Slider) {
         //NOOP
     }
     
-    func sliderDidEndSliding(slider: Slider)
+    func sliderDidEndSliding(_ slider: Slider)
     {
         if slider == rowsSlider
         {

@@ -11,9 +11,9 @@ import UserInterface
 
 protocol SliderDelegate
 {
-    func sliderDidSlide(slider: Slider)
+    func sliderDidSlide(_ slider: Slider)
     
-    func sliderDidEndSliding(slider: Slider)
+    func sliderDidEndSliding(_ slider: Slider)
 }
 
 class Slider: UISlider
@@ -30,7 +30,7 @@ class Slider: UISlider
         }
     }
     
-    override func setValue(value: Float, animated: Bool)
+    override func setValue(_ value: Float, animated: Bool)
     {
         super.setValue(value, animated: animated)
         
@@ -59,21 +59,21 @@ class Slider: UISlider
     
     func setup()
     {
-        thumbLabel.font = UIFont.systemFontOfSize(UIFont.systemFontSize())
+        thumbLabel.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
         
-        thumbLabel.textColor = UIColor.darkTextColor()
+        thumbLabel.textColor = UIColor.darkText
         
-        thumbLabel.textAlignment = .Center
+        thumbLabel.textAlignment = .center
         
         updateThumbLabelText()
         
         addSubview(thumbLabel)
         
-        addTarget(self, action: #selector(Slider.sliderDidSlide), forControlEvents: UIControlEvents.ValueChanged)
+        addTarget(self, action: #selector(Slider.sliderDidSlide), for: UIControlEvents.valueChanged)
         
-        let touchUpEvents : UIControlEvents = [UIControlEvents.TouchUpInside, UIControlEvents.TouchUpOutside]
+        let touchUpEvents : UIControlEvents = [UIControlEvents.touchUpInside, UIControlEvents.touchUpOutside]
         
-        addTarget(self, action: #selector(Slider.sliderDidEndSliding), forControlEvents: touchUpEvents)
+        addTarget(self, action: #selector(Slider.sliderDidEndSliding), for: touchUpEvents)
     }
 
     var intValue : Int { return Int(value.round) }
@@ -90,7 +90,7 @@ class Slider: UISlider
 
     func updateThumbLabelFrame()
     {
-        bringSubviewToFront(thumbLabel)
+        bringSubview(toFront: thumbLabel)
         frameViewOnThumb(thumbLabel)
     }
     

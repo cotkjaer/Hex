@@ -8,7 +8,7 @@
 
 import CoreGraphics
 
-let π2 = CGFloat(M_PI * 2)
+let π2 = CGFloat.pi * 2
 
 let sqrt3 : CGFloat = sqrt(3.0)
 let sqrt3_2 : CGFloat = sqrt3 / 2

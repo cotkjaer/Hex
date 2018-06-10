@@ -33,7 +33,7 @@ class ShapeViewController: UIViewController
     
     var childHexMapViewController : HexMapViewController?
     {
-        return childViewControllers.find(HexMapViewController.self)
+        return childViewControllers.cast(HexMapViewController.self).first
     }
 }
 
@@ -43,17 +43,16 @@ extension ShapeViewController : HexMapViewControllerDelegate
 {
     func hexMapController(_ controller: HexMapViewController, didSelectHex hex: Hex)
     {
-        controller.reloadCellForHex(hex)
+        controller.reloadCellFor(hex: hex)
         controller.updateLine()
     }
     
     func hexMapController(_ controller: HexMapViewController, didDeselectHex hex: Hex)
     {
-        controller.reloadCellForHex(hex)
+        controller.reloadCellFor(hex: hex)
         controller.lastSelectedHex = hex
 
         controller.updateLine()
-        
     }
 }
 

@@ -122,6 +122,12 @@ extension Hex
 
 extension Hex
 {
+    /// Initializes the index by rounding the coordinates
+    internal init(q: CGFloat, r: CGFloat, s: CGFloat)
+    {
+        self.init(HexCoordinates(q,r,s))
+    }
+    
     /// Initializes the index by rounding the coordinates 
     internal init(_ c: HexCoordinates)
     {
@@ -154,7 +160,11 @@ public func distance(_ a: Hex, _ b: Hex) -> Int
 {
     let d = a - b
     
-    return (abs(d.column) + abs(d.row) + abs(-d.column - d.row)) / 2
+    let x = abs(d.column)
+    let y = abs(d.row)
+    let z = abs(-d.column - d.row)
+
+    return (x + y + z) / 2
 }
 
 extension Hex

@@ -38,7 +38,7 @@ class HexesViewViewController: UIViewController
     
     var childHexMapViewController : HexMapViewController?
     {
-        return childViewControllers.find(HexMapViewController.self)
+        return childViewControllers.cast(HexMapViewController.self).first
     }
 }
 
@@ -48,7 +48,7 @@ extension HexesViewViewController : HexMapViewControllerDelegate
 {
     func hexMapController(_ controller: HexMapViewController, didSelectHex hex: Hex)
     {
-        controller.reloadCellForHex(hex)
+        controller.reloadCellFor(hex: hex)
 
         guard let hexView = hexesView?.addHex(hex) else { return }
         
@@ -59,7 +59,7 @@ extension HexesViewViewController : HexMapViewControllerDelegate
     
     func hexMapController(_ controller: HexMapViewController, didDeselectHex hex: Hex)
     {
-        controller.reloadCellForHex(hex)
+        controller.reloadCellFor(hex: hex)
         
         hexesView?.removeHex(hex)
     }

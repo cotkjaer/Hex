@@ -7,4 +7,5 @@ framework module Heap {
 
 module Heap.Swift {
     header "Heap-Swift.h"
+    requires objc
 }

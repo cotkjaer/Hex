@@ -76,7 +76,7 @@ class Slider: UISlider
         addTarget(self, action: #selector(Slider.sliderDidEndSliding), for: touchUpEvents)
     }
 
-    var intValue : Int { return Int(value.round) }
+    var intValue : Int { return Int(round(value)) }
     
     func updateThumbLabelText()
     {
@@ -94,14 +94,14 @@ class Slider: UISlider
         frameViewOnThumb(thumbLabel)
     }
     
-    func sliderDidSlide()
+    @objc func sliderDidSlide()
     {
         delegate?.sliderDidSlide(self)
     }
     
-    func sliderDidEndSliding()
+    @objc func sliderDidEndSliding()
     {
-        setValue(value.round, animated: true)
+        setValue(round(value), animated: true)
 
         delegate?.sliderDidEndSliding(self)
     }

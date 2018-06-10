@@ -28,14 +28,14 @@ class HexMapViewController: HexesCollectionViewController
             {
                 map[hex] = Int.random(between: 0, and: 1000) > 400
             }
-
+            
             hexes = Array(map.hexes)
             
             removePathLayers()
             
             for ip in collectionView?.indexPathsForSelectedItems ?? []
             {
-            collectionView?.deselectItem(at: ip, animated: false)
+                collectionView?.deselectItem(at: ip, animated: false)
             }
             
             updateLine()
@@ -53,51 +53,50 @@ class HexMapViewController: HexesCollectionViewController
         super.viewDidLoad()
     }
     
-    override func configureCell(_ cell: UICollectionViewCell, forHex hex: Hex)
+    override func configure(cell: UICollectionViewCell, for hex: Hex?)
     {
-        if let cell = cell as? HexCollectionViewCell
+        guard let cell = cell as? HexCollectionViewCell, let hex = hex else { return }
+        
+        if map[hex] == true
         {
-            
-            if map[hex] == true
-            {
-                cell.backgroundColor = UIColor(white: 0.8, alpha: 1)
-            }
-            else
-            {
-                cell.backgroundColor = UIColor.darkGray
-            }
-            
-            if cell.isSelected
-            {
-                cell.backgroundColor = UIColor.red
-            }
-            
-            let offset = hex.offsetCoordinates(orientation, offset: .odd)
-            
-            cell.detailLabel?.text = "\(offset.col + 1)x\(offset.row + 1)"
-            
-            if let cost = moveCostMap?[hex]
-            {
-                cell.textLabel?.text = "\(cost)"
-            }
-            else
-            {
-                cell.textLabel?.text = nil
-            }
-
-            if hexLine.contains(hex)
-            {
-                cell.backgroundColor = cell.backgroundColor?.withAlphaComponent(0.5)
-                
-                cell.borderColor = UIColor.orange
-                cell.hexBorderWidth = 10
-            }
-            else
-            {
-                cell.borderColor = UIColor.clear
-                cell.hexBorderWidth = 0
-            }
+            cell.backgroundColor = UIColor(white: 0.8, alpha: 1)
         }
+        else
+        {
+            cell.backgroundColor = UIColor.darkGray
+        }
+        
+        if cell.isSelected
+        {
+            cell.backgroundColor = UIColor.red
+        }
+        
+        let offset = hex.offsetCoordinates(orientation, offset: .odd)
+        
+        cell.detailLabel?.text = "\(offset.col + 1)x\(offset.row + 1)"
+        
+        if let cost = moveCostMap?[hex]
+        {
+            cell.textLabel?.text = "\(cost)"
+        }
+        else
+        {
+            cell.textLabel?.text = nil
+        }
+        
+        if hexLine.contains(hex)
+        {
+            cell.backgroundColor = cell.backgroundColor?.withAlphaComponent(0.5)
+            
+            cell.borderColor = UIColor.orange
+            cell.hexBorderWidth = 10
+        }
+        else
+        {
+            cell.borderColor = UIColor.clear
+            cell.hexBorderWidth = 0
+        }
+        
     }
     
     var lastSelectedHex : Hex?
@@ -105,30 +104,30 @@ class HexMapViewController: HexesCollectionViewController
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         guard let hex = hexForIndexPath(indexPath) else { return }
-
+        
         delegate?.hexMapController(self, didSelectHex: hex)
-
-//        if let cell = collectionView.cellForItemAtIndexPath(indexPath)
-//        {
-//            configureCell(cell, forHex: hex)
-//            
-//            updateLine()
-//        }
+        
+        //        if let cell = collectionView.cellForItemAtIndexPath(indexPath)
+        //        {
+        //            configureCell(cell, forHex: hex)
+        //
+        //            updateLine()
+        //        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath)
     {
         guard let hex = hexForIndexPath(indexPath) else { return }
-
+        
         delegate?.hexMapController(self, didDeselectHex: hex)
         
-//        if let c = collectionView.cellForItemAtIndexPath(indexPath)
-//        {
-//            configureCell(c, forHex: hex)
-//            lastSelectedHex = hex
-//            
-//            updateLine()
-//        }
+        //        if let c = collectionView.cellForItemAtIndexPath(indexPath)
+        //        {
+        //            configureCell(c, forHex: hex)
+        //            lastSelectedHex = hex
+        //
+        //            updateLine()
+        //        }
     }
     
     var selectedIndexPath : IndexPath? { return collectionView?.indexPathsForSelectedItems?.first }
@@ -136,7 +135,7 @@ class HexMapViewController: HexesCollectionViewController
     let lineLayer = CAShapeLayer()
     
     var hexLine : [Hex] = []
-
+    
     func updateLine()
     {
         if let s = hexForIndexPath(selectedIndexPath)
@@ -172,7 +171,7 @@ class HexMapViewController: HexesCollectionViewController
             collectionView?.indexPathsForVisibleItems.forEach({ (indexPath) in
                 if let hex = hexForIndexPath(indexPath), let cell = collectionView?.cellForItem(at: indexPath)
                 {
-                    configureCell(cell, forHex: hex)
+                    configure(cell: cell, for: hex)
                 }
             })
         }
@@ -204,7 +203,7 @@ class HexMapViewController: HexesCollectionViewController
             }
         }
     }
-
+    
     func addLayerForLineFrom(_ h1: Hex, h2: Hex, color: UIColor)
     {
         if let hexLayout = hexesLayout

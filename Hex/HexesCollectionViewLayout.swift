@@ -41,21 +41,19 @@ open class HexesCollectionViewLayout: UICollectionViewLayout
     open var hexSpacing : CGFloat = DefaultHexSpacing
         { didSet { invalidateLayout() } }
     
-    fileprivate var hexes: [Hex] = []
+    private var hexes: [Hex] = []
     
-    fileprivate var cachedAttributes = Array<UICollectionViewLayoutAttributes>()
+    private var cachedAttributes = Array<UICollectionViewLayoutAttributes>()
     
-    fileprivate var hexLayout : HexLayout = HexLayout(orientation: DefaultHexOrientation, edgeLength: DefaultHexEdgeLength, spacing: DefaultHexSpacing, scale: 1, offset: CGPoint.zero)
+    private var hexLayout : HexLayout = HexLayout(orientation: DefaultHexOrientation, edgeLength: DefaultHexEdgeLength, spacing: DefaultHexSpacing, scale: 1, offset: CGPoint.zero)
     
-    fileprivate var hexesBounds : CGRect = CGRect.zero
+    private var hexesBounds : CGRect = CGRect.zero
     
     override open func prepare()
     {
         super.prepare()
 
-        guard let collectionView = collectionView else {
-            return
-        }
+        guard let collectionView = collectionView else { return }
         
         let viewBounds = collectionView.bounds
         
@@ -168,7 +166,7 @@ open class HexesCollectionViewLayout: UICollectionViewLayout
 
         hexLayout = HexLayout(orientation: hexOrientation, edgeLength: hexEdgeLength, spacing: hexSpacing, scale: scale, offset: CGPoint(x:horizontalOffset, y: verticalOffset))
         
-        cachedAttributes = hexes.enumerated().flatMap { layoutAttributesForHex($0.element, atIndex: $0.offset) }
+        cachedAttributes = hexes.enumerated().compactMap { layoutAttributesForHex($0.element, atIndex: $0.offset) }
         
         hexesBounds = bounds(cachedAttributes.map({ $0.frame }))
     }

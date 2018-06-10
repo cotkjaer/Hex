@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Collections
+//import Collections
 import Heap
 
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -174,16 +174,14 @@ extension HexMap: Sequence
 
 extension HexMap
 {
-    
     func map<T>(transform: (Element) throws -> T) rethrows -> HexMap<T>
     {
         return HexMap<T>(dictionary: try dict.map(transform: transform))
     }
 
-    
-    func flatMap<T>(transform: (Element) throws -> T?) rethrows -> HexMap<T>
+    func compactMap<T>(transform: (Element) throws -> T?) rethrows -> HexMap<T>
     {
-        return HexMap<T>(dictionary: try dict.flatMap(transform: transform))
+        return HexMap<T>(dictionary: try dict.compactMap(transform: transform))
     }
 }
 
@@ -272,7 +270,7 @@ extension HexMap
     /// Make a map of the cost of moving from `start` and a maximum of `movement` steps.
     public func moveCostForHex(_ start: Hex, movement: Int = Int.max, costFunction: (Element?) -> Int?) -> HexMap<Int>
     {
-        var enterCostMap = self.flatMap( transform: costFunction )
+        var enterCostMap = self.compactMap( transform: costFunction )
         
         enterCostMap[start] = 0
         
@@ -365,7 +363,7 @@ extension HexMap
         
         var paths : [[Hex]] = []
 
-        var enterCostMap = self.flatMap( transform: costFunction )
+        var enterCostMap = self.compactMap( transform: costFunction )
         enterCostMap[origin] = 0
         
         var frontier = BinaryHeap<(cost: Int, hexes: [Hex])>(isOrderedBefore: {$0.cost < $1.cost} )

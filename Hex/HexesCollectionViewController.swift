@@ -19,18 +19,14 @@ open class HexesCollectionViewController: UICollectionViewController
     
     open var hexesLayout : HexesCollectionViewLayout?
     {
-        return collectionViewLayout as? HexesCollectionViewLayout
+        return collectionView?.collectionViewLayout as? HexesCollectionViewLayout
     }
     
     // MARK: Indexing
     
     open func hexForIndexPath(_ indexPath: IndexPath?) -> Hex?
     {
-        guard let indexPath = indexPath else { return nil }
-        
-        guard (indexPath as NSIndexPath).item < hexes.count && (indexPath as NSIndexPath).item >= 0 else { return nil }
-        
-        return hexes[(indexPath as NSIndexPath).item]
+        return hexes.get(indexPath?.item)
     }
     
     open func indexPathForHex(_ hex : Hex?) -> IndexPath?
@@ -52,33 +48,44 @@ open class HexesCollectionViewController: UICollectionViewController
         return hexes.count
     }
 
-    open func cellReuseIdentifierForHex(_ hex: Hex) -> String
+    open func cellReuseIdentifierFor(hex: Hex?) -> String
     {
         //NOOP - override
 
         return "Cell"
     }
     
-    public final func reloadCellForHex(_ hex: Hex)
+    public final func reloadCellFor(hex: Hex?)
     {
         guard let indexPath = indexPathForHex(hex), let cell = collectionView?.cellForItem(at: indexPath) else { return }
         
-        configureCell(cell, forHex: hex)
+        configure(cell: cell, for: hex)
     }
     
-    open func configureCell(_ cell: UICollectionViewCell, forHex hex: Hex)
+    open func configure(cell: UICollectionViewCell, for hex: Hex?)
     {
         //NOOP - override
     }
     
     override public final func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        let hex = hexForIndexPath(indexPath)! // TODO: crash-prone
+        let hex = hexForIndexPath(indexPath)
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifierForHex(hex), for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifierFor(hex: hex), for: indexPath)
     
-        configureCell(cell, forHex: hex)
+        configure(cell: cell, for: hex)
         
         return cell
+    }
+    
+    open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator)
+    {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        coordinator.animate(alongsideTransition: { (context) in
+            self.collectionView?.frame = CGRect(origin: .zero, size: size)
+        }) { (context) in
+            self.hexesLayout?.invalidateLayout()
+        }
     }
 }

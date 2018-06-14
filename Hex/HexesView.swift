@@ -23,7 +23,7 @@ open class HexesView: UIView
     @IBInspectable
     open var hexSpacing: CGFloat = DefaultHexSpacing { didSet { updateLayout(oldValue != hexSpacing) } }
     
-    fileprivate var layout: HexLayout = HexLayout(orientation: DefaultHexOrientation, edgeLength: DefaultHexEdgeLength, spacing: DefaultHexSpacing, scale: 1, offset: .zero)
+    private(set) var layout: HexLayout = HexLayout(orientation: DefaultHexOrientation, edgeLength: DefaultHexEdgeLength, spacing: DefaultHexSpacing, scale: 1, offset: .zero)
     {
         didSet { updateLayout(oldValue != layout) }
     }
@@ -102,6 +102,22 @@ open class HexesView: UIView
         guard let hex = hex else { return nil }
         
         return hexViewsByHex[hex]
+    }
+    
+    // MARK: - coordinates
+    
+    open func center(for hex: Hex?) -> CGPoint?
+    {
+        guard let hex = hex else { return nil }
+        
+        return layout.centerForHex(hex: hex)
+    }
+    
+    open func corners(for hex: Hex?) -> [CGPoint]?
+    {
+        guard let hex = hex else { return nil }
+        
+        return layout.corners(hex: hex)
     }
     
     // MARK: - Layout

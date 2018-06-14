@@ -26,15 +26,13 @@ class HexTests: XCTestCase
     {
         measure
             {
-                var _ = HexMap<Bool>(rectangleWithWidth: 20, height: 70, repeatedValue: true)
+                var _ = HexMap<Bool>(shape: HexMapShape.rectangle(width: 70, height: 20), repeatedValue: true)
         }
     }
     
     func test_moveCost()
-    {
-        let radius = 1
-        
-        let map = HexMap(hexagonWithRadius: radius, repeatedValue: true)
+    {        
+        let map = HexMap(shape: HexMapShape.hexagon(radius: 2), repeatedValue: true)
         
         let hex = Hex(0, 0)
         
@@ -48,7 +46,7 @@ class HexTests: XCTestCase
     
     func test_moveCost_performance()
     {
-        var map = HexMap<Bool>(rectangleWithWidth: 20, height: 70, repeatedValue: true)
+        var map = HexMap<Bool>(shape: HexMapShape.rectangle(width: 20, height: 70), repeatedValue: true)
         
         for (hex, _) in map
         {

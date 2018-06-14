@@ -268,6 +268,7 @@ open class HexPaths
 extension HexMap
 {
     /// Make a map of the cost of moving from `start` and a maximum of `movement` steps.
+    @discardableResult
     public func moveCostForHex(_ start: Hex, movement: Int = Int.max, costFunction: (Element?) -> Int?) -> HexMap<Int>
     {
         var enterCostMap = self.compactMap( transform: costFunction )

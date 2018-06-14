@@ -16,15 +16,15 @@ class HexMapTests: XCTestCase
     {
         measure
             {
-                let _ = HexMap(rectangleWithWidth: 70, height: 60, repeatedValue: true)
+                let _ = HexMap(shape: .rectangle(width: 70, height: 60), repeatedValue: true)
         }
     }
     
     func test_iteration_for_HexMap()
     {
-        let m1 = HexMap(rectangleWithWidth: 50, height: 40, repeatedValue: true)
+        let m1 = HexMap(shape:.rectangle(width: 50, height: 40), repeatedValue: true)
         
-        let m2 = HexMap(rectangleWithWidth: 50, height: 40, repeatedValue: true)
+        let m2 = HexMap(shape:.rectangle(width: 50, height: 40), repeatedValue: true)
 
         var a1 = [Hex]()
         var a2 = [Hex]()
@@ -45,7 +45,7 @@ class HexMapTests: XCTestCase
     
     func test_moveCost()
     {
-        let m = HexMap(rectangleWithWidth: 5, height: 5, repeatedValue: true)
+        let m = HexMap(shape:.rectangle(width: 5, height: 5), repeatedValue: true)
         
         let start = Hex(0,0)
         
@@ -67,7 +67,7 @@ class HexMapTests: XCTestCase
     
     func test_ShortestPath()
     {
-        let m = HexMap(hexagonWithRadius: 15, repeatedValue: true)
+        let m = HexMap(shape: .hexagon(radius: 15), repeatedValue: true)
         
         let origin = Hex(0,0)
 

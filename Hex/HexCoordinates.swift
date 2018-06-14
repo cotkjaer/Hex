@@ -11,6 +11,7 @@ import Foundation
 ///Cube Coordinates - For screen-space to Hex-space conversions
 typealias HexCoordinates = (q: CGFloat, r: CGFloat, s: CGFloat)
 
+
 // MARK: - Arithmetic
 
 func + (lhs: HexCoordinates, rhs: HexCoordinates) -> HexCoordinates
@@ -64,3 +65,13 @@ internal func line(_ a: HexCoordinates, b: HexCoordinates) -> [HexCoordinates]
     
     return stride(from: 0, through: N, by: 1).map({ lerp(a, b, CGFloat($0) / CGFloat(N)) })
 }
+//
+//extension Hex
+//{
+//    var coordinates: HexCoordinates
+//    {
+//        get { return HexCoordinates(q: column, r: row, s: -q - r)}
+//    }
+//}
+
+

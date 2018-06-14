@@ -55,6 +55,16 @@ func bounds<S: Collection>(_ rects :S) -> CGRect where S.Iterator.Element == CGR
     return rects.reduce(first, { $0.union($1) })
 }
 
+extension Collection where Iterator.Element == CGRect
+{
+    func bounds() -> CGRect
+    {
+        guard let first = self.first else { return CGRect.zero }
+        
+        return reduce(first, { $0.union($1) })
+    }
+}
+
 func closedPath<S: Sequence>(_ points :S) -> UIBezierPath where S.Iterator.Element == CGPoint
 {
     let path = UIBezierPath()

@@ -76,6 +76,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8F70982D20D2FAEA001F431F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8FE6645A1CEF33F1003AD6BC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8FE664621CEF33F1003AD6BC;
+			remoteInfo = Hex;
+		};
 		8FE6646F1CEF33F1003AD6BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8FE6645A1CEF33F1003AD6BC /* Project object */;
@@ -385,6 +392,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				8F70982E20D2FAEA001F431F /* PBXTargetDependency */,
 			);
 			name = HexDemo;
 			productName = HexDemo;
@@ -523,6 +531,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8F70982E20D2FAEA001F431F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8FE664621CEF33F1003AD6BC /* Hex */;
+			targetProxy = 8F70982D20D2FAEA001F431F /* PBXContainerItemProxy */;
+		};
 		8FE664701CEF33F1003AD6BC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8FE664621CEF33F1003AD6BC /* Hex */;
@@ -753,7 +766,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = HexDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.silverback-it.HexDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -772,7 +785,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = HexDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.silverback-it.HexDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";

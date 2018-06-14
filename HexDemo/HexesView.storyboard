@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dMq-fc-HW7">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dMq-fc-HW7">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,32 +23,44 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i69-zm-rio">
-                                <rect key="frame" x="16" y="28" width="343" height="312"/>
+                                <rect key="frame" x="16" y="28" width="343" height="311.5"/>
                                 <connections>
                                     <segue destination="irX-hM-0iJ" kind="embed" id="08v-f3-bjU"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DaO-WA-pPp">
-                                <rect key="frame" x="16" y="348" width="343" height="311"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hzl-R6-SZ4" customClass="HexesView" customModule="Hex">
-                                        <rect key="frame" x="160" y="75" width="240" height="128"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="edgeLength">
-                                                <real key="value" value="20"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="spacing">
-                                                <real key="value" value="2"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                </subviews>
+                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="DaO-WA-pPp" customClass="HexesView" customModule="Hex">
+                                <rect key="frame" x="16" y="347.5" width="343" height="311.5"/>
                                 <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="hexEdgeLength">
+                                        <real key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="hexSpacing">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="center" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hzl-R6-SZ4" customClass="HexesView" customModule="Hex">
+                                <rect key="frame" x="157" y="473.5" width="60" height="60"/>
+                                <color key="backgroundColor" red="1" green="0.98489378139999995" blue="0.1984498535" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="Hzl-R6-SZ4" firstAttribute="centerY" secondItem="DaO-WA-pPp" secondAttribute="centerY" id="Vv1-Hy-jgA"/>
-                                    <constraint firstItem="Hzl-R6-SZ4" firstAttribute="centerX" secondItem="DaO-WA-pPp" secondAttribute="centerX" id="zwW-kV-ypg"/>
+                                    <constraint firstAttribute="width" constant="60" placeholder="YES" id="A7S-Cx-bHV"/>
+                                    <constraint firstAttribute="height" constant="60" placeholder="YES" id="Yhw-5Q-YPd"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="hexEdgeLength">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="hexSpacing">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="A7S-Cx-bHV"/>
+                                        <exclude reference="Yhw-5Q-YPd"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -57,13 +69,16 @@
                             <constraint firstItem="DaO-WA-pPp" firstAttribute="top" secondItem="i69-zm-rio" secondAttribute="bottom" constant="8" symbolic="YES" id="H0x-m5-T1y"/>
                             <constraint firstItem="DaO-WA-pPp" firstAttribute="height" secondItem="i69-zm-rio" secondAttribute="height" id="KnP-BL-Uyv"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DaO-WA-pPp" secondAttribute="trailing" id="NG1-al-9Se"/>
+                            <constraint firstItem="DaO-WA-pPp" firstAttribute="centerX" secondItem="Hzl-R6-SZ4" secondAttribute="centerX" id="bQG-tV-70n"/>
                             <constraint firstItem="i69-zm-rio" firstAttribute="top" secondItem="sSz-cf-Zuk" secondAttribute="bottom" constant="8" symbolic="YES" id="nDh-C2-dMl"/>
                             <constraint firstItem="DaO-WA-pPp" firstAttribute="leading" secondItem="gq7-ck-nb2" secondAttribute="leadingMargin" id="nGg-Rx-HXf"/>
                             <constraint firstItem="i69-zm-rio" firstAttribute="leading" secondItem="gq7-ck-nb2" secondAttribute="leadingMargin" id="oDY-Rt-Shv"/>
+                            <constraint firstItem="DaO-WA-pPp" firstAttribute="centerY" secondItem="Hzl-R6-SZ4" secondAttribute="centerY" id="vFR-NC-ynD"/>
                             <constraint firstItem="pZa-Ko-ysS" firstAttribute="top" secondItem="DaO-WA-pPp" secondAttribute="bottom" constant="8" symbolic="YES" id="xCC-Zz-pGv"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backgroundHexesView" destination="DaO-WA-pPp" id="xtu-Ry-n90"/>
                         <outlet property="hexesView" destination="Hzl-R6-SZ4" id="xzn-PO-o84"/>
                     </connections>
                 </viewController>
